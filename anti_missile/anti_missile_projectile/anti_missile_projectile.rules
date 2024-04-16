@@ -1,0 +1,197 @@
+ID = "twrecks.anti_missile_projectile"
+OtherIDs = ["anti_missile_projectile"]
+Range = 1000
+IdealRange = 1000
+Speed = 20
+
+Components
+{
+	Physics
+	{
+		Type = CirclePhysics
+		Radius = 1
+		Density = 0.05
+	}
+
+	Homing
+	{
+		Type = TargetHoming
+		TurnVelocity = 120d
+		Delay = .1
+		AvoidanceRaycastDistance = 150
+		VelocityCompensation = 90%
+	}
+
+	TargetSearch
+    {
+        Type = TargetSearch
+        Interval = 0.1
+        Range = 250
+        BulletTargetCategories = [torpedo, missile, missile_nuke_stage2, mine_deployed]
+        TargetTypesByPriority = [Bullets]
+    }
+
+	Acceleration
+	{
+		Type = Acceleration
+		Acceleration = 75
+	}
+
+	NegativeAcceleration
+	{
+		Type = Acceleration
+		Acceleration = [-90, 0]
+		AccelerationOverTime = [0, .75]
+		Direction = FrameOfReferenceVelocity
+	}
+
+	DeathByLifetime
+	{
+		Type = DeathByLifetime
+		Lifetime = 12
+		HasTarget = true
+	}
+
+	DeathByDistanceTraveled
+	{
+		Type = DeathByDistanceTraveled
+		// Distance auto-computed from range.
+		HasTarget = false
+	}
+
+	Sprite
+	{
+		Type = Sprite
+		IsLit = true
+		Sprite
+		{
+			Texture
+			{
+				File = "anti_missile_projectile.png"
+				MipLevels = max
+			}
+			Size = [1.2, .4]
+		}
+
+		NormalsTexture
+		{
+			File = "anti_missile_projectile_normals.png"
+			MipLevels = max
+		}
+	}
+
+	MediaEffects
+	{
+		Type = MediaEffects
+		Offset = [0, 0]
+		Rotation = 180d
+		MediaEffects
+		[
+			&<particles/missile_he_thruster_fire.rules>
+		]
+	}
+
+	Targetable
+	{
+		Type = Targetable
+		Health = 100
+		TargetCategory = "anti"
+
+		// OnDeath very little happens
+		OnDeath = &../Hit/HitOperational
+	}
+
+	Hit
+	{
+		Type = SimpleHit
+
+        BulletCollisions
+        {
+            Enemies = true
+            Junk = true
+            Neutrals = true
+            OnlyBulletCategories = [missile_nuke_stage2, torpedo, missile, mine_deployed]
+        }
+		HitBullet
+		{
+			Offset = [-0.15, 0]
+
+			HitEffects
+			[
+				{
+					Type = ExplosiveDamage
+					TotalDamage = 3000000
+					Radius = 4
+					Slices = 1
+					Filter
+					{
+						Ships = false
+						Shields = false
+						Bullets = true
+						OnlyBulletCategories = [missile_nuke_stage2, torpedo, missile, mine_deployed]
+						Crew = true
+					}
+				}
+			]
+
+			MediaEffects
+			[
+				&<./Data/shots/pd_shot/particles/pd_shot_spikes.rules>
+				&<./Data/shots/pd_shot/particles/pd_shot_sparks.rules>
+				&<./Data/ships/terran/point_defense/particles/point_defense_shoot_flash.rules>
+
+				: /BASE_SOUNDS/AudioExterior
+				{
+					Sound = "missile_anti_hit.wav"
+					Volume = .75
+					SpeedVariation = .4
+				}
+
+				: /BASE_SHAKE
+				{
+					ShakeAmount = .15
+					Duration = .75
+				}
+			]
+		}
+
+		CrewCollisions = {Enemies=true; Junk=true}
+		HitCrew = &HitOperational
+
+		HitShield = &HitOperational
+		HitOperational
+		{
+			Offset = [-0.15, 0]
+
+			HitEffects
+			[
+				{
+					Type = Damage
+					Damage = 35
+				}
+			]
+
+			MediaEffects
+			[
+				&<./Data/shots/pd_shot/particles/pd_shot_spikes.rules>
+				&<./Data/shots/pd_shot/particles/pd_shot_sparks.rules>
+				&<./Data/ships/terran/point_defense/particles/point_defense_shoot_flash.rules>
+
+				: /BASE_SOUNDS/AudioExterior
+				{
+					Sound = "missile_anti_hit.wav"
+					Volume = .75
+					SpeedVariation = .4
+				}
+
+				: /BASE_SHAKE
+				{
+					ShakeAmount = .15
+					Duration = .75
+				}
+			]
+		}
+		HitStructural = &HitOperational
+	}
+
+}

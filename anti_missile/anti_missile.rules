@@ -1,0 +1,434 @@
+Part : <./Data/ships/terran/base_part_terran.rules>/Part
+{
+	NameKey = "Parts/AntiMissile"
+	IconNameKey = "Parts/AntiMissile"
+	ID = twrecks.anti_missile // Part IDs must always be in the form of "author_name.part_name". If making your own mod, do *not* use "cosmoteer" as your author name, because it may conflict with future vanilla parts.
+	OtherIDs = [anti_missile]
+	EditorGroups = ["Defenses", "WeaponsProjectile"]
+	DescriptionKey = "Parts/AntimissileDesc"
+	Resources
+	[
+		[steel, 8]
+		[coil, 8]
+	]
+	TypeCategories = [defense,  uses_missiles, is_crewed]
+	ReceivableBuffs : ^/0/ReceivableBuffs []
+	Size = [1, 2]
+	PhysicalRect = [0, 1, 1, 1]
+	SaveRect = &PhysicalRect
+	SelectionPriority = 1
+	SelectionTypeByRotation = true
+	MaxHealth = 3000
+	InitialPenetrationResistance = 3
+	ProhibitAbove = 1
+	IsFlippable = true
+	AllowedDoorLocations
+	[
+		[1, 1]
+	]
+	EditorIcon
+	{
+		Texture
+		{
+			File = "icon.png"
+			SampleMode = Linear
+		}
+		Size = [21.33, 42.66]
+	}
+	Components : ^/0/Components
+	{
+		IsOperational
+		{
+			Type = MultiToggle
+			Toggles = [PowerToggle, PartCrew]
+			Mode = All
+		}
+
+		PowerToggle
+		{
+			Type = UIToggle
+			ToggleID = "on_off"
+			Default = 1
+			RequiresCommand = false
+		}
+
+		CommandConsumer
+		{
+			Type = CommandConsumer
+			OperationalToggle = PowerToggle
+			CommandPoints = 2
+		}
+
+		FireModeToggle
+		{
+			Type = UIToggle
+			ToggleID = "fire_mode"
+			Default = 1
+			AvailableChoices = [-1, 1, 2]
+			ToggledOnChoices = [0, 1, 2]
+		}
+		AutoTargetToggle
+		{
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnModes = [1, 2]
+		}
+		AutoFireToggle
+		{
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnMode = 2
+		}
+
+		FirePrefToggle
+		{
+			Type = UIToggle
+			ToggleID = "fire_pref"
+			Default = 1
+		}
+		FirePrefAttack
+		{
+			Type = ModeToggle
+			Mode = FirePrefToggle
+			OnModes = [0, 2]
+		}
+		FirePrefDefend
+		{
+			Type = ModeToggle
+			Mode = FirePrefToggle
+			OnModes = [1, 2]
+		}
+		AttackToggle
+		{
+			Type = MultiToggle
+			Toggles = [AutoTargetToggle, FirePrefAttack]
+			Mode = All
+		}
+		DefendToggle
+		{
+			Type = MultiToggle
+			Toggles = [AutoTargetToggle, FirePrefDefend]
+			Mode = All
+		}
+
+		LoadedMissiles
+		{
+			Type = ResourceStorage
+			ResourceType = missile_part_he
+			MaxResources = 2
+			ToggleOnResources = 1
+			ToggleOffResources = 1
+			DelayBeforeReadyToUse = .5
+			DropResourcesWhenDestroyed = true
+			DropResourcesWhenRemoved = true
+		}
+
+		Consumer
+		{
+			Type = ResourceConsumer
+			ResourceType = missile_part_he
+			Storage = LoadedMissiles
+			DefaultPriority = &/PRIORITIES/Weapon_Supply
+			OverridePriorityKey = LoadedMissiles
+			OperationalToggle = PowerToggle
+		}
+
+		Graphics
+		{
+			Type = Graphics
+			Location = [0.5, 1]
+			OperationalToggle = IsOperational
+			Floor
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "floor.png"
+						Size = [1, 2]
+					}
+					{
+						File = "floor_33.png"
+						Size = [1, 2]
+					}
+					{
+						File = "floor_66.png"
+						Size = [1, 2]
+					}
+				]
+			}
+			OperationalLighting
+			{
+				Layer = "lights_add"
+				DamageLevels
+				[
+					{
+						File = "lights.png"
+						Size = [1, 2]
+					}
+				]
+			}
+			Walls
+			{
+				Layer = "walls"
+				DamageLevels
+				[
+					{
+						File = "walls.png"
+						Size = [1, 2]
+					}
+					{
+						File = "walls_33.png"
+						Size = [1, 2]
+					}
+					{
+						File = "walls_66.png"
+						Size = [1, 2]
+					}
+				]
+			}
+			Roof
+			{
+				Layer = "roofs"
+				DamageLevels
+				[
+					{
+						File = "roof.png"
+						NormalsFile = "roof_normals.png"
+						Size = [1, 2]
+					}
+					{
+						File = "roof_33.png"
+						NormalsFile = "roof_normals_33.png"
+						Size = [1, 2]
+					}
+					{
+						File = "roof_66.png"
+						NormalsFile = "roof_normals_66.png"
+						Size = [1, 2]
+					}
+				]
+			}
+		}
+
+		External_Walls_Graphics
+		{
+			Type = Graphics
+			Location = [0.5, 1]
+			Walls
+			{
+				Layer = "external_walls"
+				DamageLevels
+				[
+					{
+						File = "external_walls.png"
+						NormalsFile = "external_walls_normals.png"
+						Size = [1, 2]
+					}
+					{
+						File = "external_walls_33.png"
+						NormalsFile = "external_walls_normals_33.png"
+						Size = [1, 2]
+					}
+					{
+						File = "external_walls_66.png"
+						NormalsFile = "external_walls_normals_66.png"
+						Size = [1, 2]
+					}
+				]
+			}
+		}
+
+		MissileSprites
+		{
+			Type = ResourceSprites
+			Location = [0.5, 1]
+			ResourceStorage = LoadedMissiles
+			Layer = "weapons"
+			HasZeroResourceSprite = true
+			ResourceLevels
+			[
+				{
+					File = "missile_in_tube0.png"
+					Offset = [0, 0]
+					Size = [1, 2]
+				}
+				{
+					File = "missile_in_tube1.png"
+					NormalsFile = "missile_in_tube_normals1.png"
+					Offset = [0, 0]
+					Size = [1, 2]
+				}
+				{
+					File = "missile_in_tube2.png"
+					NormalsFile = "missile_in_tube_normals2.png"
+					Offset = [0, 0]
+					Size = [1, 2]
+				}
+			]
+		}
+
+		CrewLocation1
+		{
+			Type = CrewLocation
+			Location = [0.5, 1.5]
+			Rotation = 225d
+		}
+
+		PartCrew
+		{
+			Type = PartCrew
+			Crew = 1
+			DefaultPriority = &/PRIORITIES/Weapon_Crew
+			PrerequisitesBeforeCrewing = [PowerToggle]
+			HighPriorityPrerequisites = [LoadedMissiles]
+			CrewDestinations
+			[
+				[0.5, 1.5]
+			]
+			CrewLocations
+			[
+				CrewLocation1
+			]
+		}
+
+		ReloadProgressBar
+		{
+			Type = ProgressBar
+			OperationalToggle = IsOperational
+			ShowProgressFor = Weapon
+		}
+
+		Weapon
+		{
+			Type = TurretWeapon // This has an arc of 0, but we don't want to use FixedWeapon because that will only shoot at things directly in the LOS.
+			Rotation = -90d
+			OperationalToggle = IsOperational
+			AutoFireToggle = AutoFireToggle
+			FireInterval = 2 // Uses common reload timer.
+			FiringArc = 0d;
+			ValidArc = 360d;
+			FireThresholdAngle = 180d;
+			RotateSpeed = 0d
+			AllowFireWithBlockedLOS = true
+			AIFirepowerRating = 200
+			AutoTargets
+			[
+				{
+					TargetType = Bullets
+					BulletTargetCategories = [missile_nuke_stage2, torpedo, mine_deployed]
+				}
+			]
+			CanBeGivenExplicitTarget = false
+		}
+
+		BulletEmitter
+		{
+			Type = BulletEmitter
+			ChainedTo = Weapon
+			FireTrigger = Weapon
+			GetTargetFrom = Weapon
+			Location = [1, 0.5]
+			OperationalToggle = IsOperational
+			Bullet = &<anti_missile_projectile/anti_missile_projectile.rules>
+			ResourceStorage = LoadedMissiles
+			ResourcesUsed = 1
+			MinResourcesUsed = 1
+		}
+
+		OperationEffects
+		{
+			Type = ToggleEffects
+			Location = [.5, 1.5]
+			Toggle = IsOperational
+			ToggledOnMediaEffects = &/COMMON_EFFECTS/PowerOn
+			ToggledOffMediaEffects = &/COMMON_EFFECTS/PowerOff
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/COMMON_EFFECTS/SmallPartDestroyed
+			Location = [.5, 1.5]
+		}
+
+		Indicators
+		{
+			Type = IndicatorSprites
+			Location = [.5, 1.5]
+			Layer = "indicators"
+			Indicators
+			[
+				// Turned off.
+				{
+					Toggle = PowerToggle
+					AtlasSprite
+					{
+						File = &/INDICATORS/PowerOff
+						Size = [1, 1]
+					}
+				}
+
+				// Out of missiles.
+				{
+					Toggle = LoadedMissiles
+					Delay = &~/Part/Components/Weapon/FireInterval
+					AtlasSprite
+					{
+						File = &/INDICATORS/NoMissiles
+						Size = [1, 1]
+					}
+				}
+
+				// No crew.
+				{
+					Toggle = PartCrew
+					AtlasSprite
+					{
+						File = &/INDICATORS/NoCrew
+						Size = [1, 1]
+					}
+				}
+			]
+		}
+
+		Blueprints
+		{
+			Type = BlueprintSprite
+			File = "blueprints.png"
+			Size = [1, 2]
+		}
+	}
+
+	Stats
+	{
+//		CrewRequired = &~/Components/PartCrew/Crew
+//		AmmoCapacity = (&~/Components/AmmoStorage/GridRect/2) * (&~/Components/AmmoStorage/GridRect/3) * (&<./Data/resources/bullet/bullet.rules>/MaxStackSize) + (&~/Components/LoadedAmmo/MaxResources)
+
+//		RecAmmo = &../StatsByCategory/0/Stats/AmmoPerSecond
+//		RecCrew = (&CrewRequired) + (&RecAmmo) * 2
+	}
+
+	StatsByCategory
+	[
+		{
+			NameKey = "StatCategories/BulletLarge"
+			Stats
+			{
+//				DamagePerShot = &~/Components/BulletEmitter/Bullet/Components/Hit/HitOperational/HitEffects/0/Damage
+//				DamagePerSecond = (&DamagePerShot) * (&ROF)
+//				Damage = [&../DamagePerShot, &../DamagePerSecond]
+//				Penetration = &~/Components/BulletEmitter/Bullet/Components/Hit/Penetration
+//				FireChance = (&~/Components/BulletEmitter/Bullet/Components/Hit/PenetratingOperational/HitEffects/1/FireChance) * 100
+//				ROF = 1 / (&~/Components/Weapon/FireInterval)
+//				Range = &~/Components/BulletEmitter/Bullet/Range
+//				Spread = deg(&~/Components/BulletEmitter/Spread/1)
+//				ShotSpeed = &~/Components/BulletEmitter/Bullet/Speed
+//				ShotHP = &~/Components/BulletEmitter/Bullet/Components/Targetable/Health
+//				AmmoPerShot = &~/Components/BulletEmitter/ResourcesUsed
+//				AmmoPerSecond = (&AmmoPerShot) * (&ROF)
+//				ShotAmmoUsage = [&../AmmoPerShot, &../AmmoPerSecond]
+			}
+		}
+	]
+}

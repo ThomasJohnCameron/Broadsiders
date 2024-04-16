@@ -1,0 +1,341 @@
+Actions
+[
+	// Replace vanilla laser weapons
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/laser_blaster_small/laser_blaster_small.rules>/Part"
+		IgnoreIfNotExisting = false
+		Overrides
+		{
+			ID = definetly.not.cosmoteer.laser_blaster_small //makes it not have the same id
+			OtherIDs = [definitely.not.cosmoteer.laser_blaster]//makes it not have the same id
+			IsBuildable = false //makes it illegal and invis
+		}
+	}
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/laser_blaster_large/laser_blaster_large.rules>/Part"
+		IgnoreIfNotExisting = false
+		Overrides
+		{
+			ID = definitely.not.cosmoteer.laser_blaster_large //makes it not have the same id
+			IsBuildable = false //makes it illegal and invis
+		}
+	}
+
+    {
+        Action = Add
+        AddTo = "<../../../workshop/content/799600/2890601784/laser_blaster_small/laser_blaster_small_modular.rules>/Part/OtherIDs"
+        IgnoreIfNotExisting = true
+        ToAdd = cosmoteer.laser_blaster_small
+    }
+    {
+        Action = Add
+        AddTo = "<../../../workshop/content/799600/2890601784/laser_blaster_large/laser_blaster_large_modular.rules>/Part/OtherIDs"
+        IgnoreIfNotExisting = true
+        ToAdd = cosmoteer.laser_blaster_large
+    }
+
+	//Edit strings to better fit with vanilla.
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_small/laser_blaster_small_modular.rules>/Part"
+		IgnoreIfNotExisting = false
+		Overrides
+		{
+			// Edit strings to vanilla
+			NameKey = "<./Data/strings/en.rules>/Parts/LaserBlasterSmall"
+			IconNameKey = "<./Data/strings/en.rules>/Parts/LaserBlasterSmallIcon"
+			DescriptionKey = "<./Data/strings/en.rules>/Parts/LaserBlasterSmallDesc"
+		}
+	}
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_large/laser_blaster_large_modular.rules>/Part"
+		IgnoreIfNotExisting = false
+		Overrides
+		{
+			// Edit strings to vanilla
+			NameKey = "<./Data/strings/en.rules>/Parts/LaserBlasterLarge"
+			IconNameKey = "<./Data/strings/en.rules>/Parts/LaserBlasterLargeIcon"
+			DescriptionKey = "<./Data/strings/en.rules>/Parts/LaserBlasterLargeDesc"
+		}
+	}
+
+	//Edit icons to better fit with vanilla.
+	{
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_small/laser_blaster_small_modular.rules>/Part/EditorIcon"
+		With = {
+			Texture
+			{
+				File = "./Data/ships/terran/laser_blaster_small/icon.png"
+				SampleMode = Linear
+			}
+			Size = [16, 64]
+		}
+	}
+
+	{
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_large/laser_blaster_large_modular.rules>/Part/EditorIcon"
+		With = 	{
+			Texture
+			{
+				File = "./Data/ships/terran/laser_blaster_large/icon.png"
+				SampleMode = Linear
+			}
+			Size = [36.8, 92]
+		}
+	}
+
+	// Disable deck lasers
+
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_small_roof/laser_blaster_small_modular_roof.rules>/Part"
+		IgnoreIfNotExisting = false
+		Overrides
+		{
+			IsBuildable = false //makes it illegal and invis
+		}
+	}
+
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_large_roof/laser_blaster_large_modular_roof.rules>/Part"
+		IgnoreIfNotExisting = false
+		Overrides
+		{
+			IsBuildable = false //makes it illegal and invis
+		}
+	}
+
+	// blue_laser_bolt_small
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_small/blue/laser_bolt_small/laser_bolt_small.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [80, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+	{// Damage from 400 -> 450
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_small/blue/laser_bolt_small/laser_bolt_small.rules>/Components/Hit/HitOperational/HitEffects/0/Damage"
+		With = 450
+	}
+	// green_laser_bolt_small
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_small/green/laser_bolt_small/laser_bolt_small.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [80, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+	{// Damage from 400 -> 450
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_small/green/laser_bolt_small/laser_bolt_small.rules>/Components/Hit/HitOperational/HitEffects/0/Damage"
+		With = 450
+	}
+	// orange_laser_bolt_small
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_small/orange/laser_bolt_small/laser_bolt_small.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [80, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+	{// Damage from 400 -> 450
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_small/orange/laser_bolt_small/laser_bolt_small.rules>/Components/Hit/HitOperational/HitEffects/0/Damage"
+		With = 450
+	}
+	// purple_laser_bolt_small
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_small/purple/laser_bolt_small/laser_bolt_small.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [80, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+	{// Damage from 400 -> 450
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_small/purple/laser_bolt_small/laser_bolt_small.rules>/Components/Hit/HitOperational/HitEffects/0/Damage"
+		With = 450
+	}
+	// red_laser_bolt_small
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_small/red/laser_bolt_small/laser_bolt_small.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [80, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+	{// Damage from 400 -> 450
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_small/red/laser_bolt_small/laser_bolt_small.rules>/Components/Hit/HitOperational/HitEffects/0/Damage"
+		With = 450
+	}
+	// yellow_laser_bolt_small
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_small/yellow/laser_bolt_small/laser_bolt_small.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [80, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+	{// Damage from 400 -> 450
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_small/yellow/laser_bolt_small/laser_bolt_small.rules>/Components/Hit/HitOperational/HitEffects/0/Damage"
+		With = 450
+	}
+	// blue_laser_bolt_large
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_large/blue/laser_bolt_large/laser_bolt_large.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [60, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+	{//large laser damage 900 -> 1000
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_large/blue/laser_bolt_large/laser_bolt_large.rules>/Components/Hit/HitOperational/HitEffects/0/Damage"
+		With = 1000
+	}
+	// green_laser_bolt_large
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_large/green/laser_bolt_large/laser_bolt_large.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [60, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+	{//large laser damage 900 -> 1000
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_large/green/laser_bolt_large/laser_bolt_large.rules>/Components/Hit/HitOperational/HitEffects/0/Damage"
+		With = 1000
+	}
+	// orange_laser_bolt_large
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_large/orange/laser_bolt_large/laser_bolt_large.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [60, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+	{//large laser damage 900 -> 1000
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_large/orange/laser_bolt_large/laser_bolt_large.rules>/Components/Hit/HitOperational/HitEffects/0/Damage"
+		With = 1000
+	}
+	// orange_laser_bolt_large
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_large/purple/laser_bolt_large/laser_bolt_large.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [60, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+	{//large laser damage 900 -> 1000
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_large/purple/laser_bolt_large/laser_bolt_large.rules>/Components/Hit/HitOperational/HitEffects/0/Damage"
+		With = 1000
+	}
+	// red_laser_bolt_large
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_large/red/laser_bolt_large/laser_bolt_large.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [60, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+	{//large laser damage 900 -> 1000
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_large/red/laser_bolt_large/laser_bolt_large.rules>/Components/Hit/HitOperational/HitEffects/0/Damage"
+		With = 1000
+	}
+	// yellow_laser_bolt_large
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2890601784/laser_blaster_large/yellow/laser_bolt_large/laser_bolt_large.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [60, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+	{//large laser damage 900 -> 1000
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_large/yellow/laser_bolt_large/laser_bolt_large.rules>/Components/Hit/HitOperational/HitEffects/0/Damage"
+		With = 1000
+	}
+
+	{// Decrease small laser firing arc
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_small/laser_blaster_small_modular.rules>/Part/Components/Turret/FiringArc"
+		with = 80d
+	}
+	{// Decrease large laser firing arc
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2890601784/laser_blaster_large/laser_blaster_large_modular.rules>/Part/Components/Turret/FiringArc"
+		with = 80d
+	}
+	{// Remove manual small laser targetting
+		Action = Add
+		AddTo = "<../../../workshop/content/799600/2890601784/laser_blaster_small/laser_blaster_small_modular.rules>/Part/Components/Turret"
+		name = CanBeGivenExplicitTarget
+		ToAdd = false
+	}
+	{// Remove manual large laser targetting
+		Action = Add
+		AddTo = "<../../../workshop/content/799600/2890601784/laser_blaster_large/laser_blaster_large_modular.rules>/Part/Components/Turret"
+		name = CanBeGivenExplicitTarget
+		ToAdd = false
+	}
+]

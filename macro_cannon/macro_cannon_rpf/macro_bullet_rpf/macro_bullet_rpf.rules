@@ -1,0 +1,174 @@
+ID = "twrecks.macro_bullet_rpf"
+Range = 470
+IdealRange = [100, 420]
+IdealRadius = [5, 150]
+Speed = 160
+
+Components
+{
+	Physics
+	{
+		Type = CirclePhysics
+		Radius = 1
+		Density = 0.0001
+	}
+
+	Death
+	{
+		Type = DeathByLifetime
+		// Lifetime will be auto-calculated based on range and speed.
+	}
+
+	Targetable
+	{
+		Type = Targetable
+		Health = 8000
+		TargetCategory = "bullet"
+		OnDeath = &~/Components/Hit/HitOperational
+	}
+
+	DeathByEnemyProximity
+	{
+		Type = DeathByEnemyProximity
+		Interval = .1
+		Range = 100
+		DetectsShips = true
+		DetectsBullets = true
+		StartDelay = 0.5
+
+		OnDeath
+		{
+			HitEffects
+			[
+				{
+					Type = SpawnBullets
+					Bullet = &<mine_shrapnel.rules>
+					Count = 8
+					Distance = 0
+					Spread = [-20d, 20d]
+					InheritVelocity = true
+				}
+			]
+
+			MediaEffects
+			[
+                &<./Data/shots/missile_he/particles/missile_he_hit.rules>
+                &<./Data/shots/missile_he/particles/missile_he_flash.rules>
+
+				: /BASE_SOUNDS/AudioExterior
+				{
+					Sound = "./Data/shots/missile_he/missile_he_hit.wav"
+					Volume = .75
+					SpeedVariation = .4
+				}
+
+				: /BASE_SHAKE
+				{
+					ShakeAmount = .1
+					Duration = .75
+				}
+			]
+		}
+	}
+
+	Hit
+	{
+		Type = SimpleHit
+		ShieldCollisions = { Shields=false; }
+
+		HitShield {}
+
+		HitOperational
+		{
+			HitEffects = &~/Components/DeathByEnemyProximity/OnDeath/HitEffects
+
+			MediaEffects
+			[
+                &<./Data/shots/missile_he/particles/missile_he_hit.rules>
+                &<./Data/shots/missile_he/particles/missile_he_flash.rules>
+
+				: /BASE_SOUNDS/AudioExterior
+				{
+					Sound = "./Data/shots/missile_he/missile_he_hit.wav"
+					Volume = .75
+					SpeedVariation = .4
+				}
+
+				: /BASE_SHAKE
+				{
+					ShakeAmount = .1
+					Duration = .75
+				}
+			]
+		}
+
+		HitStructural = &HitOperational
+
+		HitFriendly
+		{
+			MediaEffects = &../HitOperational/MediaEffects
+		}
+	}
+
+	Sprite
+	{
+		Type = AnimatedSprite
+		RenderBucket = BulletUpper3
+		ReduceScaleWith = Hit
+		ReduceScaleExponent = 0.5
+		Animation
+		{
+			AtlasSprite
+			{
+				Texture
+				{
+					File = "bullet.png"
+					SampleMode = Linear
+					MipLevels = max
+				}
+				Size = [2, 2]
+			}
+			FrameCount = 1
+			FrameSize = [80, 80]
+			FramesPerRow = 1
+			FramesPerSecond = 120
+		}
+		NormalsTexture = &Animation/AtlasSprite/Texture
+		DiffuseShader = "./Data/default.shader"
+		NormalsShader = "./Data/no_normals.shader"
+	}
+
+	GlowSprite
+	{
+		Type = Sprite
+		RenderBucket = BulletUpper4
+		Z = 0.5
+		IsLight = true
+		Offset = [0, 0]
+		Sprite
+		{
+			Texture
+			{
+				File = "./Data/common_effects/particles/blob.png"
+				MipLevels = max
+				SampleMode = Linear
+			}
+			Size = [18, 9]
+			VertexColor = [255, 100, 0]
+			TargetBlendMode = Add
+			Shader = "./Data/common_effects/fancy_light.shader"
+			_litReflectiveStrength = 24
+			_litAdditiveStrength = 0.05
+			_unlitAdditiveStrength = 0.125
+		}
+	}
+
+	MediaEffects
+	{
+		Type = MediaEffects
+		MediaEffects
+		[
+			&<particles/bullet_trail_deck.rules>
+		]
+	}
+}

@@ -1,0 +1,370 @@
+Parts
+{
+	// Heavy Armour
+	HeavyArmor = "Heavy Armor"
+	HeavyArmorIcon = &HeavyArmor
+	HeavyArmorDesc = "Provides twice the protection at three times the cost and twice the weight of normal armor."
+
+	HeavyArmorWedge = "Heavy Armor Wedge"
+	HeavyArmorWedgeIcon = &HeavyArmorWedge
+	HeavyArmorWedgeDesc = &HeavyArmorDesc
+
+	HeavyArmor1x2Wedge = "Heavy Armor 1x2 Wedge"
+	HeavyArmor1x2WedgeIcon = &HeavyArmor1x2Wedge
+	HeavyArmor1x2WedgeDesc = &HeavyArmorDesc
+
+	HeavyArmor1x3Wedge = "Heavy Armor 1x3 Wedge"
+	HeavyArmor1x3WedgeIcon = &HeavyArmor1x3Wedge
+	HeavyArmor1x3WedgeDesc = &HeavyArmorDesc
+
+	HeavyArmor2x1 = "Heavy Armor 2x1"
+	HeavyArmor2x1Icon = &HeavyArmor2x1
+	HeavyArmor2x1Desc = &HeavyArmorDesc
+
+	HeavyArmorStructureHybrid1x1 = "Heavy Armor Structure Hybrid 1x1"
+	HeavyArmorStructureHybrid1x1Icon = &HeavyArmorStructureHybrid1x1
+	HeavyArmorStructureHybrid1x1Desc = &HeavyArmorDesc
+
+	HeavyArmorStructureHybrid1x2 = "Heavy Armor Structure Hybrid 1x2"
+	HeavyArmorStructureHybrid1x2Icon = &HeavyArmorStructureHybrid1x2
+	HeavyArmorStructureHybrid1x2Desc = &HeavyArmorDesc
+
+	HeavyArmorStructureHybrid1x3 = "Heavy Armor Structure Hybrid 1x3"
+	HeavyArmorStructureHybrid1x3Icon = &HeavyArmorStructureHybrid1x3
+	HeavyArmorStructureHybrid1x3Desc = &HeavyArmorDesc
+
+	HeavyArmorStructureHybridTri = "Heavy Armor Structure Hybrid Tri"
+	HeavyArmorStructureHybridTriIcon = &HeavyArmorStructureHybridTri
+	HeavyArmorStructureHybridTriDesc = &HeavyArmorDesc
+
+	HeavyArmorTri = "Heavy Armor Tri"
+	HeavyArmorTriIcon = &HeavyArmorTri
+	HeavyArmorTriDesc = &HeavyArmorDesc
+
+	// Light Armour
+	LightArmor = "Light Armor"
+	LightArmorIcon = &LightArmor
+	LightArmorDesc = "Lighter and less protective than Standard Armor, but decidedly more effective than empty Corridors at protecting valuable components; oh, and protecting the crew too I suppose."
+
+	LightArmor1x2Wedge = "Light Armor 1x2 Wedge"
+	LightArmor1x2WedgeIcon = &LightArmor1x2Wedge
+	LightArmor1x2WedgeDesc = &LightArmorDesc
+
+	LightArmor2x1 = "Light Armor 2x1"
+	LightArmor2x1Icon = &LightArmor2x1
+	LightArmor2x1Desc = &LightArmorDesc
+
+	LightArmorTri = "Light Armor Triangle"
+	LightArmorTriIcon = &LightArmorTri
+	LightArmorTriDesc = &LightArmorDesc
+
+	LightArmorWedge = "Light Armor Wedge"
+	LightArmorWedgeIcon = &LightArmorWedge
+	LightArmorWedgeDesc = &LightArmorDesc
+
+	LightArmor1x3Wedge = "Light Armor 1x3 Wedge"
+	LightArmor1x3WedgeIcon = &LightArmor1x3Wedge
+	LightArmor1x3WedgeDesc = &LightArmorDesc
+
+	// Macro Cannon
+	MacroCannon = "Macro Cannon"
+	MacroCannonIcon = &MacroCannon
+	MacroCannonDesc = "A large and powerful cannon, hidden behind a large plate of reinforced steel. This weapon can change its firemode between AP, HE and RPF shot, making it a versatile main weapon for a burgeoning space fleet."
+
+	// 533mm H Torpedo Launcher
+	TorpedoLauncher = "533mm H torpedo launcher"
+	TorpedoLauncherIcon = &TorpedoLauncher
+	TorpedoLauncherDesc = "A powerful torpedo launcher optimized for space combat. It fires long range, high damage armoured Torpedos. The weapon is designed to fit nicely into bow armour. Some hairbrain captains use this weapon as a ramming device, despite the extremely long range of the torpedo."
+
+	// Antimissile
+	Antimissile = "Antimissile"
+	AntimissileIcon = &Antimissile
+	AntimissileDesc = "The Antimissile is a space combat defense system effective against torpedoes, mines and nukes. It is ineffective against HE and EMP missiles. Compact and suited for neutralizing slow-moving threats, it is designed for long-range engagements."
+	// Jani's Drones
+	DroneLauncherTiny = "Tiny Drone Launcher"
+	DroneLauncherTinyIcon = "T. Drones"
+	DroneLauncherTinyDesc = "Single use Weaponized Drones that can fly fully autonomously to attack and destroy vessels.\nUses power and 3D printer technology to weld steel plates into Tiny Drones."
+
+	DroneLauncherSmall = "Small Drone Launcher"
+	DroneLauncherSmallIcon = "S. Drones"
+	DroneLauncherSmallDesc = "Single use Weaponized Drones that can fly fully autonomously to attack and destroy vessels.\nUses power and 3D printer technology to weld steel plates into Small Drones."
+
+}
+
+BulletTypes
+{
+	AP = "Armour-Piercing Rounds"
+	APDesc = "This macro cannon projectile has a large amount of penetration, but little damage compared to the other choices."
+	HE = "High Explosive Rounds"
+	HEDesc = "A macro cannon projectile with a large bomb embedded in the front. Extremely high blast damage and fire chance, but no penetraton."
+	RPF = "Radio Proximity Fuse Rounds"
+	RPFDesc = "This projectile will break apart into large amounts of shrapnel, to pepper the enemy with. Low damage and penetration, but more chance to hit."
+}
+
+BulletPartToggles
+{
+	BulletType_AP = "<b><string id='BulletTypes/AP'/></b>\n\n<string id='BulletTypes/APDesc'/>"
+	BulletType_HE = "<b><string id='BulletTypes/HE'/></b>\n\n<string id='BulletTypes/HEDesc'/>"
+	BulletType_RPF = "<b><string id='BulletTypes/RPF'/></b>\n\n<string id='BulletTypes/RPFDesc'/>"
+}
+
+BroadsidersMapStyles
+{
+	Small2TOnePoint = "2 Teams - One Point"
+	Small2TTipOnePoint = "Two teams, one large control point."
+	Small3TOnePoint = "3 Teams - One Point"
+	Small3TTipOnePoint = "Three teams, one large control point."
+	Small4TOnePoint = "4 Teams - One Point"
+	Small4TTipOnePoint = "Four teams, one large control point."
+}
+
+PartToggles
+{
+	// Jani's Drones
+	//DroneSmallLaser = "Laser"
+	DroneSmallLaser = "<b>Laser Cannon Drone</b>\n\n"\
+	"Bigger. Better. Stronger. a severe upgrade in laser technology, Built with reverse engineering from competing brands, and reckless overclocking.\n\n"\
+	"<b>Laser Cannon Drone Launcher:</b>\n"\
+	"<white>Build Time:</white> <good>6</good> <gray>sec</gray>\n"\
+	"<img name='resource.steel'/> <good>6</good> Steel <gray>(</gray><good>1</good><gray>/sec)</gray>\n"\
+	"<img name='resource.battery'/> <good>4</good> Power <gray>(</gray><good>0.6</good><gray>/sec)</gray>\n"\
+	"<white>Range:</white> <good>500</good> <gray>metres</gray>\n"\
+	"<white>Launcher Raw DMG:</white> <good>30k</good><gray>/shot (</gray><good>5000</good><gray>/sec)</gray>\n"\
+	"<gray>(How much potential damage a single launch has)</gray>\n\n"\
+	"<b>Laser Cannon Drone:</b>\n"\
+	"<white>Drone Range:</white> <good>120</good> <gray>metres</gray>\n"\
+	"<white>Drone Damage:</white> <good>400</good><gray>/shot\n"\
+	"<white>Shots:</white><good> 30</good>\n"\
+	"<white>Durability:</white><good> 4500</good>\n"\
+	"<white>Drone ROF:</white><good> 4</good><gray>/sec</gray>"
+
+	DroneMedCannon = "<b>Standard Cannon Drone</b>\n\n"\
+	"A Standard cannon with a slightly smaller caliber, but stacks way much firepower due to ignoring safety limits.\n\n"\
+	"<b>Standard Cannon Drone Launcher:</b>\n"\
+	"<white>Build Time:</white> <good>8</good> <gray>sec</gray>\n"\
+	"<img name='resource.steel'/> <good>8</good> Steel <gray>(</gray><good>1</good><gray>/sec)</gray>\n"\
+	"<img name='resource.sulfur'/> <good>1</good> Sulfur <gray>(</gray><good>0.125</good><gray>/sec)</gray>\n"\
+	"<img name='resource.battery'/> <good>4</good> Power <gray>(</gray><good>0.5</good><gray>/sec)</gray>\n"\
+	"<white>Range:</white> <good>400</good> <gray>metres</gray>\n"\
+	"<white>Launcher Raw DMG:</white> <good>62.5k</good><gray>/shot (</gray><good>7812</good><gray>/sec)</gray>\n"\
+	"<gray>(How much potential damage a single launch has)</gray>\n\n"\
+	"<b>Standard Cannon Drone:</b>\n"\
+	"<white>Drone Range:</white> <good>120</good> <gray>metres</gray>\n"\
+	"<white>Drone Damage:</white> <good>700</good><gray>/shot\n"\
+	"<white>Shots:</white><good> 25</good>\n"\
+	"<white>Durability:</white><good> 4500</good>\n"\
+	"<white>Drone ROF:</white><good> 3.33</good><gray>/sec</gray>"
+
+	DroneEletroCannon = "<b>Disruptor Eletro-Cannon Drone</b>\n\n"\
+	"Strapping together a Laser cannon and a disruptor seems to work, it's extremely unstable, but These Drones won't last that long anyway.\n\n"\
+	"<b>Eletro-Cannon Drone Launcher:</b>\n"\
+	"<white>Build Time:</white> <good>6</good> <gray>sec</gray>\n"\
+	"<img name='resource.steel'/> <good>6</good> Steel <gray>(</gray><good>1</good><gray>/sec)</gray>\n"\
+	"<img name='resource.battery'/> <good>5</good> Power <gray>(</gray><good>0.8</good><gray>/sec)</gray>\n"\
+	"<white>Range:</white> <good>500</good> <gray>metres</gray>\n"\
+	"<white>Launcher Raw DMG:</white> <good>18k</good><gray>/shot (</gray><good>3000</good><gray>/sec)</gray>\n"\
+	"<white>Raw Shield DMG:</white> <good>121k</good><gray>/shot (</gray><good>20k</good><gray>/sec)</gray>\n"\
+	"<gray>(How much potential damage a single launch has)</gray>\n\n"\
+	"<b>Eletro-Cannon Drone Drone:</b>\n"\
+	"<white>Drone Range:</white> <good>110</good> <gray>metres</gray>\n"\
+	"<white>Drone Damage:</white> <good>100</good><gray>/shot\n"\
+	"<white>Damage vs Shields:</white> <good>4050</good><gray>/shot\n"\
+	"<white>Shots:</white><good> 30</good>\n"\
+	"<white>Durability:</white><good> 4000</good>\n"\
+	"<white>Drone ROF:</white><good> 2.85</good><gray>/sec</gray>"
+
+	Laserdrone = "Laser Drone (4 drn 4 powr)"
+	Bulletdrone = "Bullet Drone (4 drn 6 bullet)"
+	Beamdrone = "Beam Drone (5 drn 8 powr)"
+	Raildrone = "Rail Drone (6 drn 8 powr 8 bullet)"
+	Missiledrone = "Missile Drone (6 drn 8 missle)"
+	BFGdrone = "BFG Drone (16 drn 16 powr 12 nuke 8 prot)"
+	Fireballdrone = "Fireball Drone (6 drn 4 powr)"
+	Mk3drone = "MK3 Drone Swarm (3drn X 8)"
+	Shielddrone = "Shield Drone (5 drn 4 powr)\n\n<bad><b>WARNING: DOESNT WORK WITH MULTIPLAYER</b></bad>"
+	XRoofful = "Roof Greebles: ON"
+	XRoofless = "Roof Greebles: OFF"
+	DroneCombat1 = "<b>Combat MK1</b>\n\n"\
+	"The (Second) Simplest form of a drone you can make. Shoots lasers at enemies.\n\n"\
+	"<b>Combat MK1 Launcher:</b>\n"\
+	"<white>Build Time:</white> <good>6</good> <gray>sec</gray>\n"\
+	"<img name='resource.steel'/> <good>2</good> Steel <gray>(</gray><good>0.3</good><gray>/sec)</gray>\n"\
+	"<img name='resource.battery'/> <good>0.8</good> Power <gray>(</gray><good>0.13</good><gray>/sec)</gray>\n"\
+	"<white>Range:</white> <good>650</good> <gray>metres</gray>\n"\
+	"<white>Launcher Raw DMG:</white> <good>5500</good><gray>/shot (</gray><good>916</good><gray>/sec)</gray>\n"\
+	"<gray>(How much potential damage a single launch has)</gray>\n\n"\
+	"<b>Combat MK1 Drone:</b>\n"\
+	"<white>Drone Range:</white> <good>90</good> <gray>metres</gray>\n"\
+	"<white>Drone Damage:</white> <good>550</good><gray>/shot (</gray><good>825</good><gray>/sec)</gray>\n"\
+	"<white>Shots:</white><good> 10</good>\n"\
+	"<white>Durability:</white><good> 1400</good>\n"\
+	"<white>Drone ROF:</white><good> 1.5</good><gray>/sec</gray>"
+
+	//DroneCombat2 = "Combat Drone Mk2\n\n<b>Requirements:</b>\n4 Steel\n1.6 Power\nBuild Time: 8s\n\n<b>Stats:</b>\n\nshots:25\nDrone ROF: 2 per second.\nDamage: 1200 Max"
+
+	DroneCombat2 = "<b>Combat MK2</b>\n\n"\
+	"Requires more materials and time. Shoots better, faster, for longer. Shorter Launch Range.\n\n"\
+	"<b>Combat MK2 Launcher:</b>\n"\
+	"<white>Build Time:</white> <good>8</good> <gray>sec</gray>\n"\
+	"<img name='resource.steel'/> <good>4</good> Steel <gray>(</gray><good>0.5</good><gray>/sec)</gray>\n"\
+	"<img name='resource.battery'/> <good>1.6</good> Power <gray>(</gray><good>0.2</good><gray>/sec)</gray>\n"\
+	"<white>Range:</white> <good>400</good> <gray>metres</gray>\n"\
+	"<white>Launcher Raw DMG:</white> <good>16.8k</good><gray>/shot (</gray><good>2100</good><gray>/sec)</gray>\n"\
+	"<gray>(How much potential damage a single launch has)</gray>\n\n"\
+	"<b>Combat MK2 Drone:</b>\n"\
+	"<white>Drone Range:</white> <good>100</good> <gray>metres</gray>\n"\
+	"<white>Drone Damage:</white> <good>672</good><gray>/shot (</gray><good>1344</good><gray>/sec)</gray>\n"\
+	"<white>Shots:</white><good> 25</good>\n"\
+	"<white>Durability:</white><good> 2200</good>\n"\
+	"<white>Drone ROF:</white><good> 2</good><gray>/sec</gray>"
+
+	//StellDrone = "Stell Micro Tank\n\n<b>Requirements:</b>\n4 Steel\n6 Bullets\n2 Power\nBuild Time: 10s\n\n<b>Stats:</b>\n\nshots:32\nDrone ROF: 1.5 per second.\nDamage: Max 2500\n\nExtremely slow, 'driving' on the backgroud"
+
+	StellDrone = "<b>Stell Micro Tank</b>\n\n"\
+	"<bad>Hidden Content. Removed for a reason or another but can still be accessed.</bad>\nA Land tank in space. <bad>Extremely slow, and sticks to background grid, and is tough to move.</bad> Extremely Deadly. Uses ammo.\n\n"\
+	"<b>Stell Micro Tank Launcher:</b>\n"\
+	"<white>Build Time:</white> <good>10</good> <gray>sec</gray>\n"\
+	"<img name='resource.steel'/> <good>4</good> Steel <gray>(</gray><good>0.4</good><gray>/sec)</gray>\n"\
+	"<img name='resource.bullet'/> <good>6</good> Bullets <gray>(</gray><good>0.6</good><gray>/sec)</gray>\n"\
+	"<img name='resource.battery'/> <good>2</good> Power <gray>(</gray><good>0.2</good><gray>/sec)</gray>\n"\
+	"<white>Range:</white> <good>1000</good> <gray>metres</gray>\n"\
+	"<white>Launcher Raw DMG:</white> <good>80k</good><gray>/shot (</gray><good>8000</good><gray>/sec)</gray>\n"\
+	"<gray>(How much potential damage a single launch has)</gray>\n\n"\
+	"<b>Stell Tank:</b>\n"\
+	"<white>Tank Range:</white> <good>140</good> <gray>metres</gray>\n"\
+	"<white>Tank Damage:</white> <good>2500</good><gray>/shot (</gray><good>3750</good><gray>/sec)</gray>\n"\
+	"<white>Shots:</white><good> 32</good>\n"\
+	"<white>Durability:</white><good> 6000</good>\n"\
+	"<white>Tank ROF:</white><good> 1.5</good><gray>/sec</gray>"\
+	"\n\nOriginal sprite from Mindustry, by Anuke."
+
+	//Sparker = "Sparker Pulse Drone\n\n<b>Requirements:</b>\n1 Steel\n0.5 Power\nBuild Time: 2.5s\n\n<b>Stats:</b>\n\nshots:16\nDrone ROF: 2 per second.\nDamage: 70\n\n\nShots Deal 8x damage to shields, and penetrates shields easily."
+
+	Sparker = "<b>Sparker PulseCannon Drone</b>\n\n"\
+	"Cheapest Drone you can create. Shoots small weak shots in rapid fire, deals 8x more damage to shields and penetrates shields.\n\n"\
+	"<b>Sparker PulseCannon Launcher:</b>\n"\
+	"<white>Build Time:</white> <good>2.5</good> <gray>sec</gray>\n"\
+	"<img name='resource.steel'/> <good>1</good> Steel <gray>(</gray><good>0.4</good><gray>/sec)</gray>\n"\
+	"<img name='resource.battery'/> <good>0.5</good> Power <gray>(</gray><good>0.2</good><gray>/sec)</gray>\n"\
+	"<white>Range:</white> <good>400</good> <gray>metres</gray>\n"\
+	"<white>Launcher Raw DMG:</white> <good>1120</good><gray>/shot (</gray><good>448</good><gray>/sec)</gray>\n"\
+	"<gray>(How much potential damage a single launch has)</gray>\n\n"\
+	"<b>Sparker PulseCannon Drone:</b>\n"\
+	"<white>Drone Range:</white> <good>90</good> <gray>metres</gray>\n"\
+	"<white>Drone Damage:</white> <good>70</good><gray>/shot (</gray><good>140</good><gray>/sec)</gray>\n"\
+	"<white>Shots:</white><good> 16</good>\n"\
+	"<white>Durability:</white><good> 500</good>\n"\
+	"<white>Drone ROF:</white><good> 2</good><gray>/sec</gray>"
+
+	DroneWarcruiser = "Warcruiser Drone (12 drn 21 IBeam 16 Hull 16 Power)"
+	DroneBomber1 = "Bomber Drone, Hybrid(8 drn 28 IBeam 15 Hull 12 Nuke 28 Power)"
+	DroneBomber2 = "Bomber Drone, Nukes(8 drn 28 IBeam 15 Hull 24 Nuke 8 Power)"
+	DroneBomber3 = "Bomber Drone, Emps(8 drn 28 IBeam 15 Hull 48 Power)"
+	DroneAmmo1 = "Drones"
+	DroneAmmo2 = "Ibeams"
+	DroneAmmo3 = "Hulls"
+	DroneAmmo4 = "Silicon"
+	DroneAmmo5 = "Phase Fabric"
+	unit1 = "<b>Dagger</b>\n\nAttacks enemy ships with its tiny guns, Recklessly running towards enemies.\nWalks along the background\n\nProduction Time: 15 Sec\n10 Silicon, 3 Bullets.\n\nShot Count: 50\n\nSize:1x1" //king remover :>
+	unit2 = "<b>Mace</b>\n\nAttacks enemies with two short range flamethrower weapons, Dealing massive damage. Runs tiredlessly towards enemies.\nWalks along the background\n\nShot Count: 50\n\nSize: 1.25x1.25" //king weapon
+	unit3 = "<b>Fortress</b>" //king place
+	unit4 = "<b>Scepter</b>" //king tool
+	unit5 = "<b>Reign</b>" //king existance
+	unit6 = "<b>Nova</b>\n\nAttacks enemy ships with lasers, Repairing nearby units when firing, Running endlessly towards enemies. Lasers can heal friendly ships (Disclaimer: Does not rebuild broken parts.).\nWalks along the background, also spawns Very Heavy copper walls that act as damage soakers and slows ships\n\n<bad>Can fly before reaching the destination, will stop flying to shoot, technically roof launchable</bad>\n\nProduction Time: 40 Sec\n30 Silicon, 9 Bullets, 6 Drone parts\n\nShot Count : 18\nSize:1x1" //there is no star
+	unit7 = "<b>Pulsar</b>" //star 1
+	unit8 = "<b>Quasar</b>" //star 2
+	unit9 = "<b>Vela</b>" //portable meltdown
+	unit10 = "<b>Corvus</b>" //birb
+	unit11 = "<b>Crawler</b>\n\nSelf Destructs near enemy ships, Dealing Damage.\n\nProduction Time: 10 Sec\n8 Silicon, 1 Battery.\n\nSize:1x1" //weakling go crawl
+	unit12 = "<b>Atrax</b>\n\nFires Orbs of damaging slag at enemies. Deals a damage Over time and Inflicts fires\n<good>Can Walk Above Ships</good>\n\n<bad>Technically Roof launchable</bad>\n\nShot Count: 32 (balance due to Roof Sheninigans)\n\nSize: 1.62x1.62" //trax
+	unit13 = "<b>Spiroct</b>" // i cant say it...
+	unit14 = "<b>Arkyid</b>" //???
+	unit15 = "<b>Toxopid</b>" //so TOXIC
+	unit16 = "<b>Flare</b>\n\nAttacks enemy ships at a distance, Capaple of <good>flying over ships</good>\n\n<bad>Roof launchable</bad>\n\nProduction Time: 15 Sec\nShot Count: 34\n15 Silicon\nSize:1.12x1.12" //Pyro mains
+	unit17 = "<b>Horizon</b>" //bring me the, can you feel my heart
+	unit18 = "<b>Zenith</b>" //NOT terraria
+	unit19 = "<b>Antnumbra</b>" //Who?
+	unit20 = "<b>Eclipse</b>" //the shadows...
+	unit21 = "<b>Mono</b>\n\nFires beams that drain enemy resources, spawning crates with their contents. Rare chance for a special crate with rare materials to drop.\n\n <bad>Creates resources out of thin air if the enemy doesn't have the resources to drain</bad>\n\n<bad>Roof Launchable</bad>\n\nProduction Time: 35 Sec\nShot Count = 8\n30 Silicon, 6 bullets\nSize:0.75x0.75" //the smol
+	unit22 = "<b>Poly</b>" //shhuip
+	unit23 = "<b>Mega</b>" //pew pew
+	unit24 = "<b>Quad</b>" //pheeew
+	unit25 = "<b>Oct</b>" //ominous braam sound effect
+	unitdeployoff = "Deploy Units: OFF"
+	unitdeployauto = "Deploy Units: <bad>ON RANGE</bad>"
+	unitdeployon = "<good>Deploy Units: ON</good>"
+	No_Phase = "Phase Use: off"
+	Yes_Phase = "Phase Use: on"
+	No_Phase2 = "Phase\n<bad>off</bad>"
+	Yes_Phase2 = "Phase\n<good>ON</good>"
+}
+
+//used for the settings/controls/game, uses the toggle choiceID
+Inputs
+{
+	PartToggles
+	{
+        // Jani's Drones
+		Laserdrone = "Select Drone: Laser"
+		Bulletdrone = "Select Drone: Bullet"
+		Beamdrone = "Select Drone: Beam"
+		Raildrone = "Select Drone: Railgun"
+		Missiledrone = "Select Drone: Missile"
+		BFGdrone = "Select Drone: BFG"
+		Fireballdrone = "Select Drone: Fireball"
+		XRoofful = "Select Roof Greebles: ON"
+		XRoofless = "Select Roof Greebles: OFF"
+		DroneCombat1 = "Select Combat Drone"
+		DroneCombat2 = "Select Combat MK2 Drone"
+		DroneWarcruiser = "Select drone: Warcruiser"
+		DroneBomber1 = "Select drone: Bomber Hybrid"
+		DroneBomber2 = "Select drone: Bomber Nukes"
+		DroneBomber3 = "Select drone: Bomber Emps"
+		DroneAmmo1 = "Select Drones ammo"
+		DroneAmmo2 = "Select Ibeams ammo"
+		DroneAmmo3 = "Select Hulls ammo"
+		DroneAmmo4 = "Select Silicon"
+		DroneAmmo5 = "Select Phase Fabric"
+		Mk3drone = "Select Combat MK3 Drone Swarm"
+		Shielddrone = "Select drone : Shield Drone"
+		StellDrone = "Select Stell Tank Unit"
+		Sparker = "Select Sparker Pulse Drone"
+		unit1 = "Select Unit: Dagger"
+		unit2 = "Select Unit: Mace"
+		unit3 = "Select Unit: Fortress"
+		unit4 = "Select Unit: Scepter"
+		unit5 = "Select Unit: Reign"
+		unit6 = "Select Unit: Nova"
+		unit7 = "Select Unit: Pulsar"
+		unit8 = "Select Unit: Quasar"
+		unit9 = "Select Unit: Vela"
+		unit10 = "Select Unit: Corvus"
+		unit11 = "Select Unit: Crawler"
+		unit12 = "Select Unit: Atrax"
+		unit13 = "Select Unit: Spiroct"
+		unit14 = "Select Unit: Arkyid"
+		unit15 = "Select Unit: Toxopid"
+		unit16 = "Select Unit: Flare"
+		unit17 = "Select Unit: Horizon"
+		unit18 = "Select Unit: Zenith"
+		unit19 = "Select Unit: Antnumbra"
+		unit20 = "Select Unit: Eclipse"
+		unit21 = "Select Unit: Mono"
+		unit22 = "Select Unit: Poly"
+		unit23 = "Select Unit: Mega"
+		unit24 = "Select Unit: Quad"
+		unit25 = "Select Unit: Oct"
+		unitdeployoff = "Deploy Units ON"
+		unitdeployauto = "Deploy Units AUTO"
+		unitdeployon = "Deploy Units OFF"
+		No_Phase = "Dont use Phase Fabric"
+		Yes_Phase = "Use Phase Fabric"
+		nophase = "no phase"
+		yesphase = "yes phase"
+	}
+}
+
+Stats //Jani's drones
+{
+	DroneLauncherNotes = "<bad>Warning:</bad> <gray><b>For Requirements, Statistics, and Misc info, hover above each Toggle when selecting a type of drone to show the description of each drone.</b></gray>"
+}

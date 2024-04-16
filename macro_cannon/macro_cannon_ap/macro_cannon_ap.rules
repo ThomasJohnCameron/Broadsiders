@@ -1,0 +1,312 @@
+EditorIcon
+{
+	Texture
+	{
+		File = "icon_emp.png"
+		SampleMode = Linear
+	}
+	Size = [40, 100]
+}
+
+Components
+{
+
+	Weapon
+	{
+		Type = FixedWeapon
+		Location = [2, -2]// Relative to upper-left corner of unrotated part.
+		Rotation = -90d// Relative to unrotated part.
+		OperationalToggle = IsOperational
+		FireInterval = 5
+		AIFirepowerRating = 7500
+		FirePermissionToggle = FireModeToggle
+		AutoFireToggle = AutoFireToggle
+		Emitter = BulletEmitter
+		CanBeGivenExplicitTarget = false
+		AllowDirectControl = false
+		
+		AutoTarget
+		{
+			TargetType = ShipParts
+			Toggle = AutoTargetToggle
+		}
+
+		CoverageLine
+		{
+			LineSprite
+			{
+				Texture = &/INDICATORS/RadialGradient
+				VertexColor = [255, 255, 255, 191]
+				UVRect = [.5, 0, 0, 1]
+			}
+			LineThickness = 2
+
+			BeginCapSprite : LineSprite
+			{
+				UVRect = [0, 0, .5, 1]
+			}
+			BeginCapSize = [1, 2]
+
+			EndCapSprite : LineSprite
+			{
+				UVRect = [.5, 0, .5, 1]
+			}
+			EndCapSize = [1, 2]
+		}
+	}
+
+	FireModeToggle
+	{
+		Type = UIToggle
+		ToggleID = "fire_mode"
+		Default = 1
+		AvailableChoices = [-1, 1, 2]
+		ToggledOnChoices = [0, 1, 2]
+	}
+	AutoTargetToggle
+	{
+		Type = ModeToggle
+		Mode = FireModeToggle
+		OnModes = [1, 2]
+	}
+	AutoFireToggle
+	{
+		Type = ModeToggle
+		Mode = FireModeToggle
+		OnMode = 2
+	}
+
+	ReloadProgressBar
+	{
+		Type = ProgressBar
+		OperationalToggle = IsOperational
+		ShowProgressFor = Weapon
+	}
+
+	BulletEmitter
+	{
+		Type = BulletEmitter
+		ChainedTo = Weapon
+		FireTrigger = Weapon
+		GetTargetFrom = Weapon
+		Location = [1, 0]
+		OperationalToggle = IsOperational
+		Bullet = &<macro_bullet_ap/macro_bullet_ap.rules>
+		Spread = [-6d, 6d]
+		ResourceStorage = LoadedAmmo
+		ResourcesUsed = 10
+		Recoil = 4000
+	}
+
+	FireEffect
+	{
+		Type = TriggeredEffects
+		ChainedTo = Weapon
+		Trigger = BulletEmitter
+		Location = [0, 0]
+		AnchorMediaEffects = true
+
+		MediaEffects
+		[
+			&<./Data/ships/terran/cannon_large/particles/cannon_shoot_large.rules>
+			&<./Data/ships/terran/cannon_large/particles/cannon_shoot_large_flash.rules>
+			&<./Data/ships/terran/cannon_large/particles/cannon_shoot_large_flare.rules>
+			&<./Data/ships/terran/cannon_large/particles/cannon_smoke_large.rules>
+
+			: /BASE_SOUNDS/AudioExterior
+			{
+				Sound = "shoot.wav"
+				Volume = 5
+				SpeedVariation = .25
+			}
+
+			: /BASE_SHAKE
+			{
+				ShakeAmount = .075
+				Duration = .5
+			}
+		]
+	}
+
+	BarrelGraphics
+	{
+		Type = Graphics
+		ChainedTo = Weapon
+		Location = [-4, 0]
+		Rotation = 90d
+		ResetAnimationTrigger = Weapon
+
+		OperationalDoodad
+		{
+			Layer = "weapons"
+			DamageLevels
+			[
+				{
+					AnimationFiles
+					[
+						"../barrel2.png"
+						"../barrel3.png"
+						"../barrel4.png"
+						"../barrel5.png"
+						"../barrel6.png"
+						"../barrel7.png"
+						"../barrel8.png"
+						"../barrel9.png"
+						"../barrel10.png"
+						"../barrel10.png"
+						"../barrel10.png"
+						"../barrel10.png"
+						"../barrel10.png"
+						"../barrel11.png"
+						"../barrel11.png"
+						"../barrel11.png"
+						"../barrel11.png"
+						"../barrel11.png"
+						"../barrel12.png"
+						"../barrel12.png"
+						"../barrel12.png"
+						"../barrel12.png"
+						"../barrel12.png"
+						"../barrel13.png"
+						"../barrel13.png"
+						"../barrel13.png"
+						"../barrel13.png"
+						"../barrel13.png"
+						"../barrel1.png"// Loop back to beginning and clamp there.
+					]
+					Size = [4, 9]
+					AnimationInterval = 0.0500
+					AnimationStartTime = MinValue
+					ClampAnimation = true
+				}
+			]
+		}
+	}
+
+	LoadedAmmoSprites
+	{
+		Type = ResourceSprites
+		Location = [1, 4]
+		ResourceStorage = LoadedAmmo
+		Layer = "doodads_low"
+		ResourceLevels
+		[
+			{
+				File = "../loaded_bullets1.png"
+				Size = [2, 2]
+			}
+			{
+				File = "../loaded_bullets2.png"
+				Size = [2, 2]
+			}
+			{
+				File = "../loaded_bullets3.png"
+				Size = [2, 2]
+			}
+			{
+				File = "../loaded_bullets4.png"
+				Size = [2, 2]
+			}
+			{
+				File = "../loaded_bullets5.png"
+				Size = [2, 2]
+			}
+			{
+				File = "../loaded_bullets6.png"
+				Size = [2, 2]
+			}
+			{
+				File = "../loaded_bullets7.png"
+				Size = [2, 2]
+			}
+			{
+				File = "../loaded_bullets8.png"
+				Size = [2, 2]
+			}
+			{
+				File = "../loaded_bullets9.png"
+				Size = [2, 2]
+			}
+			{
+				File = "../loaded_bullets10.png"
+				Size = [2, 2]
+			}
+		]
+	}
+
+	LoaderDoorGraphics
+	{
+		Type = Graphics
+		Location = [1, 4]
+		DoodadToggle = LoadedAmmo
+		ShowToggledDoodadsWhenNotOperational = true
+		ToggleOnDoodad
+		{
+			Layer = "walls"
+			DamageLevels
+			[
+				{
+					AnimationFiles
+					[
+						"../loader_doors1.png"
+						"../loader_doors2.png"
+						"../loader_doors3.png"
+					]
+					Size = [2, 2]
+					AnimationInterval = 0.042
+					ClampAnimation = true
+				}
+			]
+		}
+		ToggleOffDoodad
+		{
+			Layer = "walls"
+			DamageLevels
+			[
+				{
+					AnimationFiles
+					[
+						"../loader_doors3.png"
+						"../loader_doors2.png"
+						"../loader_doors1.png"
+					]
+					Size = [2, 2]
+					AnimationInterval = 0.042
+					ClampAnimation = true
+				}
+			]
+		}
+	}
+
+//	Stats
+//	{
+//		CrewRequired = &~/Components/PartCrew/Crew
+//		AmmoCapacity = (&~/Components/AmmoStorage/GridRect/2) * (&~/Components/AmmoStorage/GridRect/3) * (&<./Data/resources/bullet/bullet.rules>/MaxStackSize) + (&~/Components/LoadedAmmo/MaxResources)
+
+//		RecAmmo = &../StatsByCategory/0/Stats/AmmoPerSecond
+//		RecCrew = (&CrewRequired) + (&RecAmmo) * 2
+//	}
+
+//	StatsByCategory
+//	[
+//		{
+//			NameKey = "StatCategories/BulletLarge"
+//			Stats
+//			{
+//				DamagePerShot = &~/Components/BulletEmitter/Bullet/Components/Hit/HitOperational/HitEffects/0/Damage
+//				DamagePerSecond = (&DamagePerShot) * (&ROF)
+//				Damage = [&../DamagePerShot, &../DamagePerSecond]
+//				Penetration = &~/Components/BulletEmitter/Bullet/Components/Hit/Penetration
+//				FireChance = (&~/Components/BulletEmitter/Bullet/Components/Hit/PenetratingOperational/HitEffects/1/FireChance) * 100
+//				ROF = 1 / (&~/Components/Weapon/FireInterval)
+//				Range = &~/Components/BulletEmitter/Bullet/Range
+//				Spread = deg(&~/Components/BulletEmitter/Spread/1)
+//				ShotSpeed = &~/Components/BulletEmitter/Bullet/Speed
+//				ShotHP = &~/Components/BulletEmitter/Bullet/Components/Targetable/Health
+//				AmmoPerShot = &~/Components/BulletEmitter/ResourcesUsed
+//				AmmoPerSecond = (&AmmoPerShot) * (&ROF)
+//				ShotAmmoUsage = [&../AmmoPerShot, &../AmmoPerSecond]
+//			}
+//		}
+//	]
+}

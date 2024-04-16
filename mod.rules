@@ -1,0 +1,1556 @@
+ID = zzzzzzzzzztwrecks.broadsiders
+Name = "Broadsiders"
+
+Version = 2.6.6
+CompatibleGameVersions = ["0.24.2_steam"]
+//ModifiesMultiplayer = true
+StringsFolder = "strings"
+Logo = "logo.png"
+Author = "TWrecks"
+Description =
+ "This mod is to be used in broadsider games for balance and asthetic purposes.\n"\
+ "<b>Dependencies: (This mod modifies or expects these mods to be present. it may not function properly without these installed and loaded.</b>\n\n"\
+ "<good>Adjustable Shields (and colorable parts dependency) by RustyDios</good>\n\n"\
+ "<good>The Deranged Industries Ion Point Defense by Dondelium</good>\n\n"\
+ "<good>Single and Dual PD Turrets + energy efficient vanilla PD by sir Evans</good>\n\n"\
+ "<good>Painted Prisms by PirateSee</good>\n\n"\
+ "<b>Asset Credits:</b>\n\n"\
+ "Roasted: Loads of help with the Macro Cannon sprites.\n"\
+ "janiTNT: Jani's drones are integrated directly into broadsiders.\n"\
+ "JFJohnny5: For allowing us to use his light armour assets."
+
+Actions : &<TDI_ionpd.rules>/Actions, <Colorable_shields.rules>/Actions, <Colourable_Lasers.rules>/Actions, <Deck_PD.rules>/Actions
+[
+	// Large Cannon
+	{
+		Action = Overrides
+		OverrideIn = "<shots/bullet_large/bullet_large.rules>"
+		Overrides
+		{
+			Range = 380
+			IdealRange = [70, 380]
+			IdealRadius = [5, 75]
+			Speed = 125
+		}
+	}
+
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/cannon_large/cannon_large.rules>/Part/Components/Turret"
+		Overrides
+		{
+			Range = 380
+			IdealRange = [60, 380]
+			IdealRadius = [5, 75]
+			Speed = 200
+		}
+	}
+
+	{ // Increase Large Cannon max health from 21000 to 26250
+		Action = Replace
+		Replace = "<ships/terran/cannon_large/cannon_large.rules>/Part/MaxHealth"
+		with = 	26250
+	}
+
+	{ // Increase Large Cannon penetration resistance from 5 to 7
+		Action = Replace
+		Replace = "<ships/terran/cannon_large/cannon_large.rules>/Part/InitialPenetrationResistance"
+		with = 	7
+	}
+
+	{ // Decrease large cannon accuracy slightly
+		Action = Replace
+		Replace = "<ships/terran/cannon_large/cannon_large.rules>/Part/Components/BulletEmitter/Spread"
+		with = 	[-4.5d, 4.5d]
+	}
+
+	{ // Increase large cannon firerate slightly (1.2 -> 1.0)
+		Action = Replace
+		Replace = "<ships/terran/cannon_large/cannon_large.rules>/Part/Components/Turret/FireInterval"
+		with = 1.0
+	}
+
+	{ // Remove manual large cannon targetting
+		Action = Add
+		AddTo = "<ships/terran/cannon_large/cannon_large.rules>/Part/Components/Turret"
+		name = CanBeGivenExplicitTarget
+		ToAdd = false
+	}
+
+	{ // Remove large cannon direct control targetting
+		Action = Add
+		AddTo = "<ships/terran/cannon_large/cannon_large.rules>/Part/Components/Turret"
+		name = AllowDirectControl
+		ToAdd = false
+	}
+
+	// Remove redundant large cannon fire at target toggle
+	{
+		Action = Replace
+		Replace = "<ships/terran/cannon_large/cannon_large.rules>/Part/Components/FireModeToggle"
+		With = {
+			Type = UIToggle
+			ToggleID = "fire_mode"
+			Default = 1
+			AvailableChoices = [-1, 1, 2]
+			ToggledOnChoices = [0, 1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/cannon_large/cannon_large.rules>/Part/Components/AutoTargetToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnModes = [1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/cannon_large/cannon_large.rules>/Part/Components/AutoFireToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnMode = 2
+		}
+	}
+
+	// Deck Gun
+	{
+		Action = Overrides
+		OverrideIn = "<shots/bullet_deck/bullet_deck.rules>"
+		Overrides
+		{
+			Range = 300
+			IdealRange = [75, 380]
+			IdealRadius = [5, 50]
+			Speed = 80
+		}
+	}
+
+//	{ // Increase Deck Gun weight
+//		Action = Replace
+//		Replace = "<ships/terran/cannon_deck/cannon_deck.rules>/Part/Density"
+//		with = 3
+//	}
+
+	{ // Increase prohibitted deckgun area
+		Action = Replace
+		Replace = "<ships/terran/cannon_deck/cannon_deck.rules>/Part/ProhibitRects"
+		with = [
+			[tall, [-12, -12, 12, 29]] // Left side box
+			[tall, [4, -12, 12, 29]] // Right side box
+			[tall, [0, -12, 4, 12]] // Top Box
+			[tall, [0, 5, 4, 12]] // Bottom Box
+		]
+	}
+
+//	{ // Increase Deck Gun cost significantly
+//		Action = Replace
+//		Replace = "<ships/terran/cannon_deck/cannon_deck.rules>/Part/Resources"
+//		with = 	[
+//			[steel, 400] // 200
+//			[coil2, 60] // 30
+//			[tristeel, 60] // 30
+//		]
+//	}
+
+	{ // Decrease Deck Gun accuracy slightly
+		Action = Replace
+		Replace = "<ships/terran/cannon_deck/cannon_deck.rules>/Part/Components/BaseEmitter/Spread"
+		with = 	[-4.5d, 4.5d]
+	}
+
+	{ // Remove manual Deck Gun targetting
+		Action = Add
+		AddTo = "<ships/terran/cannon_deck/cannon_deck.rules>/Part/Components/Turret"
+		name = CanBeGivenExplicitTarget
+		ToAdd = false
+	}
+
+	{ // Remove deck gun direct control targetting
+		Action = Add
+		AddTo = "<ships/terran/cannon_deck/cannon_deck.rules>/Part/Components/Turret"
+		name = AllowDirectControl
+		ToAdd = false
+	}
+
+	// Remove redundant Deck Gun fire at target toggle
+	{
+		Action = Replace
+		Replace = "<ships/terran/cannon_deck/cannon_deck.rules>/Part/Components/FireModeToggle"
+		With = {
+			Type = UIToggle
+			ToggleID = "fire_mode"
+			Default = 1
+			AvailableChoices = [-1, 1, 2]
+			ToggledOnChoices = [0, 1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/cannon_deck/cannon_deck.rules>/Part/Components/AutoTargetToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnModes = [1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/cannon_deck/cannon_deck.rules>/Part/Components/AutoFireToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnMode = 2
+		}
+	}
+
+//	{ // Decrease Deck Gun Firing Arc
+//		Action = Replace
+//		Replace = "<ships/terran/cannon_deck/cannon_deck.rules>/Part/Components/Turret/FiringArc"
+//		with = 100d
+//	}
+
+	{ // Remove deckgun roof hitbox (so they don't shoot eachother off anymore)
+		Action = Remove
+		Remove = "<ships/terran/cannon_deck/cannon_deck.rules>/Part/Components/TurretCollider"
+		IgnoreIfNotExisting = false
+	}
+
+	// Standard Cannon
+	{
+		Action = Overrides
+		OverrideIn = "<shots/bullet_med/bullet_med.rules>"
+		Overrides
+		{
+			Range = 380
+			IdealRange = [60, 380]
+			IdealRadius = [5, 75]
+			Speed = 200
+		}
+	}
+
+	{ // Increase Standard Cannon max health from 11000 to 13750
+		Action = Replace
+		Replace = "<ships/terran/cannon_med/cannon_med.rules>/Part/MaxHealth"
+		with = 	13750
+	}
+
+	{ // Increase Standard Cannon penetration resistance from 5 to 7
+		Action = Replace
+		Replace = "<ships/terran/cannon_med/cannon_med.rules>/Part/InitialPenetrationResistance"
+		with = 	7
+	}
+
+	{ // Remove manual standard cannon targetting
+		Action = Add
+		AddTo = "<ships/terran/cannon_med/cannon_med.rules>/Part/Components/Turret"
+		name = CanBeGivenExplicitTarget
+		ToAdd = false
+	}
+
+	{ // Remove medium cannon direct control targetting
+		Action = Add
+		AddTo = "<ships/terran/cannon_med/cannon_med.rules>/Part/Components/Turret"
+		name = AllowDirectControl
+		ToAdd = false
+	}
+
+	// Remove redundant Medium Cannon fire at target toggle
+	{
+		Action = Replace
+		Replace = "<ships/terran/cannon_med/cannon_med.rules>/Part/Components/FireModeToggle"
+		With = {
+			Type = UIToggle
+			ToggleID = "fire_mode"
+			Default = 1
+			AvailableChoices = [-1, 1, 2]
+			ToggledOnChoices = [0, 1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/cannon_med/cannon_med.rules>/Part/Components/AutoTargetToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnModes = [1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/cannon_med/cannon_med.rules>/Part/Components/AutoFireToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnMode = 2
+		}
+	}
+
+	// bullet_railgun
+	{
+		Action = Overrides
+		OverrideIn = "<shots/bullet_railgun/bullet_railgun.rules>"
+		Overrides
+		{
+			Range = { BaseValue=600; BuffType=RailgunShot; BuffMode=Multiply; MaxValue=1200; }
+			IdealRange
+			[
+				{ BaseValue=300; BuffType=RailgunShot; BuffMode=Multiply; MaxValue=600; }
+				{ BaseValue=600; BuffType=RailgunShot; BuffMode=Multiply; MaxValue=1200; }
+			]
+			IdealRadius = [5, 50]
+		}
+	}
+
+	{ // Railgun bullets no longer targetable.
+		Action = Remove
+		Remove = "<shots/bullet_railgun/bullet_railgun.rules>/Components/Targetable"
+		IgnoreIfNotExisting = false
+	}
+
+	{ // Railgun bullets no longer targetable.
+		Action = Remove
+		Remove = "<ships/terran/railgun_launcher/railgun_launcher.rules>/Part/StatsByCategory/0/Stats/ShotHP"
+		IgnoreIfNotExisting = false
+	}
+
+	// electro_bolt
+	{
+		Action = Overrides
+		OverrideIn = "<shots/disruptor_bolt/disruptor_bolt.rules>"
+		Overrides
+		{
+			Speed = 400
+			Range = 700
+			IdealRange = [60, 520]
+			IdealRadius = [5, 50]
+		}
+	}
+
+	{ // Remove manual Electro Bolt targetting
+		Action = Add
+		AddTo = "<ships/terran/disruptor/disruptor.rules>/Part/Components/Turret"
+		name = CanBeGivenExplicitTarget
+		ToAdd = false
+	}
+
+	{ // Remove electro bolter direct control targetting
+		Action = Add
+		AddTo = "<ships/terran/disruptor/disruptor.rules>/Part/Components/Turret"
+		name = AllowDirectControl
+		ToAdd = false
+	}
+
+	// Remove redundant Medium Cannon fire at target toggle
+	{
+		Action = Replace
+		Replace = "<ships/terran/disruptor/disruptor.rules>/Part/Components/FireModeToggle"
+		With = {
+			Type = UIToggle
+			ToggleID = "fire_mode"
+			Default = 1
+			AvailableChoices = [-1, 1, 2]
+			ToggledOnChoices = [0, 1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/disruptor/disruptor.rules>/Part/Components/AutoTargetToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnModes = [1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/disruptor/disruptor.rules>/Part/Components/AutoFireToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnMode = 2
+		}
+	}
+
+	// missile_emp
+	{
+		Action = Overrides
+		OverrideIn = "<shots/missile_emp/missile_emp.rules>"
+		Overrides
+		{
+			Range = 1200
+			IdealRange = 1200
+			// Speed = 40 // 45
+		}
+	}
+
+//	{// Decrease EMP Acceleration
+//		Action = Replace
+//		Replace = "<shots/missile_emp/missile_emp.rules>/Components/Acceleration/Acceleration"
+//		With = 40 // 75
+//	}
+
+	// missile_he
+	{
+		Action = Overrides
+		OverrideIn = "<shots/missile_he/missile_he.rules>"
+		Overrides
+		{
+			Range = 900
+			IdealRange = 900
+			// Speed = 30 // 45
+		}
+	}
+
+//	{// Decrease HE Acceleration
+//		Action = Replace
+//		Replace = "<shots/missile_he/missile_he.rules>/Components/Acceleration/Acceleration"
+//		With = 20 // 65
+//	}
+
+//	{// Decrease HE shot health
+//		Action = Replace
+//		Replace = "<shots/missile_he/missile_he.rules>/Components/Targetable/Health"
+//		With = 500 // 800
+//	}
+
+	// missile_nuke
+	{
+		Action = Overrides
+		OverrideIn = "<shots/missile_nuke/missile_nuke_stage1.rules>"
+		Overrides
+		{
+			Range = 1500
+			IdealRange = 600
+		}
+	}
+
+	{ // Remove nuke direct control targetting
+		Action = Add
+		AddTo = "<ships/terran/missile_launcher/nuke/missile_launcher_nuke.rules>/Components/Weapon"
+		name = AllowDirectControl
+		ToAdd = false
+	}
+
+	{// Make it so point defense can selectively target missile_nuke_stage1.
+		Action = Replace
+		Replace = "<shots/missile_nuke/missile_nuke_stage1.rules>/Components/Targetable/TargetCategory"
+		With = 	"missile_nuke_stage1"
+	}
+
+	{// Make it so point defense can selectively target missile_nuke_stage2.
+		Action = Replace
+		Replace = "<shots/missile_nuke/missile_nuke_stage2.rules>/Components/Targetable"
+		With = {
+			Type = Targetable
+			Health = 3600
+			TargetCategory = "missile_nuke_stage2"
+
+			// No AOE damage when shot down.
+			OnDeath = {
+				MediaEffects
+				[
+					&<./Data/shots/missile_nuke/particles/missile_nuke_flash.rules>
+
+					: /BASE_SOUNDS/AudioExterior
+					{
+						Sound = "missile_nuke_hit.wav"
+						Volume = 1
+					}
+				]
+			}
+		}
+	}
+
+//	{// Reduce nuke shot health from 7200 to 3600
+//		Action = Replace
+//		Replace = "<shots/missile_nuke/missile_nuke_stage1.rules>/Components/Targetable/Health"
+//		With = 3600
+//	}
+
+	{// Nuke missile acceleration changed from [500, 250] to [100, 8]
+		Action = Replace
+		Replace = "<shots/missile_nuke/missile_nuke_stage2.rules>/Components/BoostAcceleration/Acceleration"
+		With = [100, 8]
+	}
+
+	// Ion Beam
+	{
+		Action = Overrides
+		OverrideIn = "<shots/ion_beam/ion_beam.rules>"
+		Overrides
+		{
+			Range = 500
+			IdealRange = 330
+		}
+	}
+
+	{// Decrease Ion Beam damage from 250 to 235
+		Action = Replace
+		Replace = "<shots/ion_beam/ion_beam.rules>/HitOperational/HitEffects/0/HitEffects/0/Damage"
+		With = 235
+	}
+
+	{// Remove manual Ion Beam targetting
+		Action = Add
+		AddTo = "<ships/terran/ion_beam_emitter/ion_beam_emitter.rules>/Part/Components/Weapon"
+		name = CanBeGivenExplicitTarget
+		ToAdd = false
+	}
+
+	{ // Remove Ion Beam direct control targetting
+		Action = Add
+		AddTo = "<ships/terran/ion_beam_emitter/ion_beam_emitter.rules>/Part/Components/Weapon"
+		name = AllowDirectControl
+		ToAdd = false
+	}
+
+	// Remove redundant Ion Beam fire at target toggle
+	{
+		Action = Replace
+		Replace = "<ships/terran/ion_beam_emitter/ion_beam_emitter.rules>/Part/Components/FireModeToggle"
+		With = {
+			Type = UIToggle
+			ToggleID = "fire_mode"
+			Default = 1
+			AvailableChoices = [-1, 1, 2]
+			ToggledOnChoices = [0, 1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/ion_beam_emitter/ion_beam_emitter.rules>/Part/Components/AutoTargetToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnModes = [1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/ion_beam_emitter/ion_beam_emitter.rules>/Part/Components/AutoFireToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnMode = 2
+		}
+	}
+
+	{// Remove manual Ion Prism targetting
+		Action = Add
+		AddTo = "<ships/terran/ion_beam_prism/ion_beam_prism.rules>/Part/Components/Turret"
+		name = CanBeGivenExplicitTarget
+		ToAdd = false
+	}
+
+	{ // Remove Ion Prism direct control targetting
+		Action = Add
+		AddTo = "<ships/terran/ion_beam_prism/ion_beam_prism.rules>/Part/Components/Turret"
+		name = AllowDirectControl
+		ToAdd = false
+	}
+
+	// Remove redundant Ion Beam fire at target toggle
+	{
+		Action = Replace
+		Replace = "<ships/terran/ion_beam_prism/ion_beam_prism.rules>/Part/Components/FireModeToggle"
+		With = {
+			Type = UIToggle
+			ToggleID = "fire_mode"
+			Default = 1
+			AvailableChoices = [-1, 1, 2]
+			ToggledOnChoices = [0, 1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/ion_beam_prism/ion_beam_prism.rules>/Part/Components/AutoTargetToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnModes = [1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/ion_beam_prism/ion_beam_prism.rules>/Part/Components/AutoFireToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnMode = 2
+		}
+	}
+
+	// mining_beam
+	{
+		Action = Overrides
+		OverrideIn = "<shots/mining_beam_small/mining_beam_small.rules>"
+		Overrides
+		{
+			Range = 300
+			IdealRange = 280
+		}
+	}
+
+	{// Mining lasers clear debris with enemy crew in them
+		Action = Replace
+		Replace = "<ships/terran/mining_laser_small/mining_laser_small.rules>/Part/Components/Turret/AutoTargets"
+		With =
+		[
+			{
+				TargetType = Salvage
+				Toggle = FireModeToggle
+			}
+			{
+				TargetType = Crew
+				Toggle = AutoTargetToggle
+			}
+			{
+				TargetType = ShipParts
+				Toggle = AutoTargetToggle
+			}
+		]
+	}
+
+	{// Turn off salvage damage to ships (to stop part drops and therefore lag)
+		Action = Remove
+		Remove = "<shots/mining_beam_small/mining_beam_small.rules>/HitOperational/HitEffects/0/DamageType"
+		IgnoreIfNotExisting = false
+	}
+
+	// Hyperdrive Beacon
+	{// Remove shootable roof area.
+		Action = Remove
+		Remove = "<ships/terran/hyperdrive_beacon/hyperdrive_beacon.rules>/Part/Components/HighCollider"
+		IgnoreIfNotExisting = false
+	}
+
+	// Tractor Beam
+	{// Remove shootable roof area.
+		Action = Remove
+		Remove = "<ships/terran/tractor_beam_emitter/tractor_beam_emitter.rules>/Part/Components/TurretCollider"
+		IgnoreIfNotExisting = false
+	}
+
+	// Mines
+//	{// Mines leave launch tube slower
+//		Action = Replace
+//		Replace = "<shots/mine/mine.rules>/Speed"
+//		With = 10
+//	}
+
+	{// Mines only go active when they stop moving.
+		Action = Replace
+		Replace = "<shots/mine/mine.rules>/Components/DeployDeath/MinSpeed"
+		With = 1
+	}
+
+	{// Mines can be shot it by anti missiles only after deploying.
+		Action = Replace
+		Replace = "<shots/mine/mine_deployed.rules>/Components/Targetable/TargetCategory"
+		With = "mine_deployed"
+	}
+
+	{// Remove death by lifetime (mines don't explode from old age)
+		Action = Remove
+		Remove = "<shots/mine/mine_deployed.rules>/Components/DeathByLifetime"
+		IgnoreIfNotExisting = false
+	}
+
+	{// Mines explode only on contact
+		Action = Replace
+		Replace = "<shots/mine/mine_deployed.rules>/Components/DeathByEnemyProximity/Range"
+		With = 1
+	}
+
+//	{// Minefields are denser
+//		Action = Replace
+//		Replace = "<shots/mine/mine_deployed.rules>/Components/Repulsion/Range"
+//		With = 10
+//	}
+
+	// chaingun
+	{// Range 240 -> 300
+		Action = Replace
+		Replace = "<shots/chaingun_shot/chaingun_shot.rules>/Range"
+		With = 300
+	}
+
+	{// Damage 600 -> 525
+		Action = Replace
+		Replace = "<shots/chaingun_shot/chaingun_shot.rules>/HitOperational/HitEffects/0/Damage"
+		With = 525
+	}
+
+	{// Remove manual chaingun targetting part one
+		Action = Add
+		AddTo = "<ships/terran/chaingun/chaingun.rules>/Part/Components/Turret"
+		name = CanBeGivenExplicitTarget
+		ToAdd = false
+	}
+
+	{// Remove manual chaingun targetting part two
+		Action = Remove
+		Remove = "<ships/terran/chaingun/chaingun.rules>/Part/Components/Targeter"
+		IgnoreIfNotExisting = false
+	}
+
+	{ // Remove chaingun direct control targetting
+		Action = Add
+		AddTo = "<ships/terran/chaingun/chaingun.rules>/Part/Components/Turret"
+		name = AllowDirectControl
+		ToAdd = false
+	}
+
+	// Remove redundant Chaingun fire at target toggle
+	{
+		Action = Replace
+		Replace = "<ships/terran/chaingun/chaingun.rules>/Part/Components/FireModeToggle"
+		With = {
+			Type = UIToggle
+			ToggleID = "fire_mode"
+			Default = 1
+			AvailableChoices = [-1, 1, 2]
+			ToggledOnChoices = [0, 1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/chaingun/chaingun.rules>/Part/Components/AutoTargetToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnModes = [1, 2]
+		}
+	}
+	
+	{
+		Action = Replace
+		Replace = "<ships/terran/chaingun/chaingun.rules>/Part/Components/AutoFireToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnMode = 2
+		}
+	}
+
+	// flak
+
+	{// Remove manual flak targetting
+		Action = Add
+		AddTo = "<ships/terran/flak_cannon_large/flak_cannon_large.rules>/Part/Components/Turret"
+		name = CanBeGivenExplicitTarget
+		ToAdd = false
+	}
+
+	{ // Remove flak direct control targetting
+		Action = Add
+		AddTo = "<ships/terran/flak_cannon_large/flak_cannon_large.rules>/Part/Components/Turret"
+		name = AllowDirectControl
+		ToAdd = false
+	}
+
+	// Remove redundant Flak Cannon fire at target toggle
+	{
+		Action = Replace
+		Replace = "<ships/terran/flak_cannon_large/flak_cannon_large.rules>/Part/Components/FireModeToggle"
+		With = {
+			Type = UIToggle
+			ToggleID = "fire_mode"
+			Default = 1
+			AvailableChoices = [-1, 1, 2]
+			ToggledOnChoices = [0, 1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/flak_cannon_large/flak_cannon_large.rules>/Part/Components/AutoTargetToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnModes = [1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<ships/terran/flak_cannon_large/flak_cannon_large.rules>/Part/Components/AutoFireToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnMode = 2
+		}
+	}
+
+	{// Allow flak to target a broader range of projectiles
+		Action = Replace
+		Replace = "<ships/terran/flak_cannon_large/flak_cannon_large.rules>/Part/Components/Turret/AutoTargets/0/BulletTargetCategories"
+		With = [missile_nuke_stage1, missile_nuke_stage2, torpedo, anti, missile, laser, bullet, mine, mine_deployed]
+	}
+
+	{// Allow flak to damage a broader range of projectiles
+		Action = Replace
+		Replace = "<shots/flak_large/flak_large.rules>/HitNothing/HitEffects/0/Filter/OnlyBulletCategories"
+		With = [missile_nuke_stage1, missile_nuke_stage2, torpedo, anti, missile, laser, bullet, mine, mine_deployed]
+	}
+
+	{// Flak damage to ships 2250 -> 725
+		Action = Replace
+		Replace = "<shots/flak_large/flak_large.rules>/HitNothing/HitEffects/1/TotalDamage"
+		With = 725
+	}
+
+	{// Make flak cannons slightly more tanky
+		Action = Overrides
+		OverrideIn = "<ships/terran/flak_cannon_large/flak_cannon_large.rules>/Part"
+		Overrides
+		{
+			MaxHealth = 34000 // 21000
+			InitialPenetrationResistance = 5 // 3
+		}
+	}
+
+	{// Increase range of flak gun
+		Action = Overrides
+		OverrideIn = "<shots/flak_large/flak_large.rules>"
+		Overrides
+		{
+			Range = 300 // 150
+			IdealRange = 280 // 140
+		}
+	}
+
+	// PD
+
+	{// Increase the range of things point defense can hit
+		Action = Replace
+		Replace = "<shots/pd_shot/pd_shot.rules>/Components/Hit/BulletCollisions/OnlyBulletCategories"
+		With = [missile_nuke_stage1, missile_nuke_stage2, torpedo, anti, missile, mine, mine_deployed, bullet]
+	}
+
+	{// Increase the range of things point defense will shoot at
+		Action = Replace
+		Replace = "<ships/terran/point_defense/point_defense.rules>/Part/Components/Turret/AutoTargets/0"
+		With = {
+			TargetType = Bullets
+			BulletTargetCategories = [missile_nuke_stage1, missile_nuke_stage2, torpedo, anti, missile, mine, mine_deployed, bullet]
+			Toggle = DefendToggle
+		}
+	}
+
+	{// Power usage per shot changed from 35 to 15
+		Action = Replace
+		Replace = "<ships/terran/point_defense/point_defense.rules>/Part/Components/BulletEmitter/ResourcesUsed"
+		With = 15
+	}
+
+	{// Increase PD Range from 150 to 300
+		Action = Overrides
+		OverrideIn = "<shots/pd_shot/pd_shot.rules>"
+		Overrides
+		{
+			Range = 300
+			IdealRange = 300
+		}
+	}
+
+	{// Decrease PD Firerate from 0.066 to 0.15 (More than half slower. I think. Maybe.)
+		Action = Replace
+		Replace = "<ships/terran/point_defense/point_defense.rules>/Part/Components/Turret/FireInterval"
+		With = 0.15
+	}
+
+	{// Increase PD Accuracy from [-1d, 1d] to [-0.5d, 0.5d]
+		Action = Replace
+		Replace = "<ships/terran/point_defense/point_defense.rules>/Part/Components/BulletEmitter/Spread"
+		With = [-0.5d, 0.5d]
+	}
+
+	{// Increase PD shot damage from 150 to 250
+		Action = Replace
+		Replace = "<shots/pd_shot/pd_shot.rules>/Components/Hit/HitBullet/HitEffects/0/Damage"
+		With = 250
+	}
+
+	// Macro Cannon
+
+	{// Add ui toggle for different macro cannon ammo types.
+		Action = Add
+		AddTo = "<gui/game/parts/part_toggles.rules>/PartToggles"
+		CreateIfNotExisting = false
+		IgnoreIfNotExisting = false
+		ToAdd
+		{
+			ToggleID = "bullet_type"
+			Style = Popout
+			ShowInEditor = true
+			Choices
+			[
+				// AP.
+				{
+					ChoiceID = "bullet_type_ap"
+					ButtonToolTipKey = "BulletPartToggles/BulletType_AP"
+					ButtonSprite
+					{
+						Texture
+						{
+							File = "bullet_type_ap.png"
+							MipLevels = 2
+							SampleMode = Linear
+						}
+					}
+				}
+				// HE.
+				{
+					ChoiceID = "bullet_type_he"
+					ButtonToolTipKey = "BulletPartToggles/BulletType_HE"
+					ButtonSprite
+					{
+						Texture
+						{
+							File = "bullet_type_he.png"
+							MipLevels = 2
+							SampleMode = Linear
+						}
+					}
+				}
+				// RPF.
+				{
+					ChoiceID = "bullet_type_rpf"
+					ButtonToolTipKey = "BulletPartToggles/BulletType_RPF"
+					ButtonSprite
+					{
+						Texture
+						{
+							File = "bullet_type_rpf.png"
+							MipLevels = 2
+							SampleMode = Linear
+						}
+					}
+				}
+			]
+		}
+	}
+
+	{// This is a better way to add part toggles than above ^^^^
+		Action = AddMany
+		AddTo = "<./Data/gui/game/parts/part_toggles.rules>/PartToggles"
+		ManyToAdd = &<gui/part_toggles.rules>/PartToggles
+	}
+
+	// Modular Rocket Thruster
+
+	{// Remove vanilla prohibitted area beneath MRT
+		Action = Remove
+		Remove = "<ships/terran/thruster_rocket_nozzle/thruster_rocket_nozzle.rules>/Part/ProhibitRects"
+		IgnoreIfNotExisting = false
+	}
+
+	{// Add prohibitted area value beneath MRT
+		Action = Overrides
+		OverrideIn = "<ships/terran/thruster_rocket_nozzle/thruster_rocket_nozzle.rules>/Part"
+		Overrides
+		{
+			ProhibitBelow = 200
+		}
+	}
+
+	// Huge Thrusters
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/thruster_huge/thruster_huge.rules>/Part"
+		Overrides
+		{
+			// ThrusterForce = 11200
+			ProhibitBelow = 18 // 10
+		}
+	}
+
+	// Boost Thrusters
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/thruster_boost/thruster_boost.rules>/Part"
+		Overrides
+		{
+			// ThrusterForce = 4160
+			// BoostedThrusterForce = 14000
+			ProhibitBelow = 26 // 18
+		}
+	}
+
+	// Large Thrusters
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/thruster_large/thruster_large.rules>/Part"
+		Overrides
+		{
+			// ThrusterForce = 4160
+			ProhibitBelow = 15 // 7
+		}
+	}
+
+	// Standard Thrusters
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/thruster_med/thruster_med.rules>/Part"
+		Overrides
+		{
+			// ThrusterForce = 1440
+			ProhibitBelow = 13 // 5
+		}
+	}
+
+	// Small Thrusters
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/thruster_small/thruster_small.rules>/Part"
+		Overrides
+		{
+			// ThrusterForce = 440
+			ProhibitBelow = 11 // 3
+		}
+	}
+
+	// Small TwoWay Thrusters
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/thruster_small_2way/thruster_small_2way.rules>/Part"
+		Overrides
+		{
+			// ThrusterForce = 440
+		}
+	}
+
+	// Small ThreeWay Thrusters
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/thruster_small_3way/thruster_small_3way.rules>/Part"
+		Overrides
+		{
+			// ThrusterForce = 440
+		}
+	}
+
+	// Small Shield
+	{ // Increase ResourceDrainPerDamage from .4 to .5
+		Action = Replace
+		Replace = "<ships/terran/shield_gen_small/shield_gen_small.rules>/Part/Components/ArcShield/ResourceDrainPerDamage"
+		With = .5
+	}
+
+	// Steel Factory
+	{// Increase iron to steel efficiency.
+		Action = Replace
+		Replace = "<ships/terran/factory_steel/factory_steel.rules>/Part/Components/ResourceConverter/ToQuantity"
+		With = 4
+	}
+
+	// asteroid
+	{
+		Action = Overrides
+		OverrideIn = "<ships/asteroid/base_part_asteroid.rules>/Part"
+		Overrides
+		{
+			Density = 0.25
+			MaxHealth = 500
+		}
+	}
+
+	{
+		Action = Replace
+		Replace = "<ships/asteroid/rock/rock_1x1_hard.rules>/Part/MaxHealth"
+		With = 1000
+	}
+
+
+	{
+		Action = Replace
+		Replace = "<ships/asteroid/rock/rock_2x2_hard.rules>/Part/MaxHealth"
+		With = 2000
+	}
+
+
+	{
+		Action = Replace
+		Replace = "<ships/asteroid/rock/rock_3x3_hard.rules>/Part/MaxHealth"
+		With = 4000
+	}
+
+
+	{
+		Action = Replace
+		Replace = "<ships/asteroid/rock/rock_4x4_hard.rules>/Part/MaxHealth"
+		With = 8000
+	}
+
+
+	{
+		Action = Replace
+		Replace = "<ships/asteroid/rock/rock_2x2.rules>/Part/MaxHealth"
+		With = 1000
+	}
+
+	{
+		Action = Replace
+		Replace = "<ships/asteroid/rock/rock_3x3.rules>/Part/MaxHealth"
+		With = 2000
+	}
+
+	{
+		Action = Replace
+		Replace = "<ships/asteroid/rock/rock_4x4.rules>/Part/MaxHealth"
+		With = 4000
+	}
+
+	{
+		Action = Replace
+		Replace = "<ships/asteroid/rock/rock_1x1_wedge.rules>/Part/MaxHealth"
+		With = 250
+	}
+
+	{
+		Action = Replace
+		Replace = "<ships/asteroid/rock/rock_1x2_wedge.rules>/Part/MaxHealth"
+		With = 750
+	}
+
+	// megaroid
+	{
+		Action = Overrides
+		OverrideIn = "<ships/megaroid/base_part_megaroid.rules>/Part"
+		Overrides
+		{
+			Density = 0.25
+			MaxHealth = 500
+		}
+	}
+
+	{ // Remove laggy asteroid destruction particles
+		Action = Remove
+		Remove = "<ships/megaroid/base_part_megaroid.rules>/Part/SalvageProgressMediaEffects"
+		IgnoreIfNotExisting = false
+	}
+
+	{ // Remove laggy asteroid destruction particles
+		Action = Remove
+		Remove = "<ships/megaroid/base_part_megaroid.rules>/Part/Components/SalvagedEffects/MediaEffects/0"
+		IgnoreIfNotExisting = false
+	}
+
+	{
+		Action = Replace
+		Replace = "<ships/megaroid/megarock/megarock_1x1.rules>/Part/MaxHealth"
+		With = 4000
+	}
+
+	{
+		Action = Replace
+		Replace = "<ships/megaroid/megarock/megarock_2x2.rules>/Part/MaxHealth"
+		With = 8000
+	}
+
+	{
+		Action = Replace
+		Replace = "<ships/megaroid/megarock/megarock_3x3.rules>/Part/MaxHealth"
+		With = 16000
+	}
+
+	{
+		Action = Replace
+		Replace = "<ships/megaroid/megarock/megarock_4x4.rules>/Part/MaxHealth"
+		With = 32000
+	}
+
+	{
+		Action = Replace
+		Replace = "<ships/megaroid/megarock/megarock_1x1_wedge.rules>/Part/MaxHealth"
+		With = 2000
+	}
+
+	{
+		Action = Replace
+		Replace = "<ships/megaroid/megarock/megarock_1x2_wedge.rules>/Part/MaxHealth"
+		With = 5000
+	}
+
+	// Huge ships
+	{
+		Action = Overrides
+		OverrideIn = "<ships/base_ship.rules>"
+		Overrides
+		{
+			MaxBorders
+			{
+				Left = -500
+				Right = 500
+				Top = -500
+				Bottom = 500
+			}
+		}
+	}
+
+// Crew
+
+	{
+		Action = Overrides
+		OverrideIn = "<crew/crew.rules>"
+		Overrides
+		{
+			MaxHealth = 1
+			OxygenSupply = 20
+			OxygenWarningLevel = 0
+			LoseHomeShipDistance = 100 // 1200
+			LoseHomeShipWarningDistance = 50 // 400
+		// Performance improvements??
+			JobAssignmentsPerSecond = 60 // 120
+			LowPriorityJobAssignmentsPerSecond = 15 // 30
+			ResourceSearchesPerSecond = 60 // 120
+			ManualTransferJobExpensiveCheckInterval = 0.1 // 1.0
+			SalvageJobExpensiveCheckInterval = 0.1 // 1.0
+			MaxCrewSearchIterations = 25 // 50
+		}
+	}
+
+	{
+		Action = Overrides
+		OverrideIn = "<crew/particles/deadman.rules>/def/Updaters/0"
+		Overrides
+		{
+			Lifetime = 1
+		}
+	}
+
+// Sulfur
+	{ // Change sulfur max stack size from 5 to 20
+		Action = Replace
+		Replace = "<resources/sulfur/sulfur.rules>/MaxStackSize"
+		IgnoreIfNotExisting = false
+		With = 20
+	}
+
+// Iron
+	{ // Change iron max stack size from 5 to 20
+		Action = Replace
+		Replace = "<resources/iron/iron.rules>/MaxStackSize"
+		IgnoreIfNotExisting = false
+		With = 20
+	}
+
+// Copper
+	{ // Change copper max stack size from 5 to 20
+		Action = Replace
+		Replace = "<resources/copper/copper.rules>/MaxStackSize"
+		IgnoreIfNotExisting = false
+		With = 20
+	}
+
+// Hyperium
+	{ // Change hyperium cost from 50 to 1600
+		Action = Replace
+		Replace = "<resources/hyperium/hyperium.rules>/BuyPrice"
+		IgnoreIfNotExisting = false
+		With = 1600
+	}
+
+	{ // Make hyperium extremely explosive.
+		Action = Add
+		AddTo = "<resources/hyperium/hyperium.rules>"
+		name = DeathHitEffects
+		ToAdd = [
+			{
+				Type = ExplosiveDamage
+				TotalDamage = 12000
+				Radius = 6
+				Delay = .05
+				FireChancePerNDamage = 80%
+				NDamage = 2000
+				CrewKillChance = 40%
+				Filter
+				{
+					OperationalHealth = true
+					StructuralHealth = false
+					Friendlies = true
+				}
+			}
+			{
+				Type = ExplosiveDamage
+				TotalDamage = 2400
+				Radius = 4
+				Delay = .05
+				Filter
+				{
+					OperationalHealth = false
+					StructuralHealth = true
+					Friendlies = true
+					Crew = false
+				}
+			}
+		]
+	}
+
+// Spawn Point
+	{ // Increase spawn point radius from 200 to 350
+		Action = Replace
+		Replace = "<modes/pvp/pvp_domination/pvp_domination.rules>/SpawnPoint/Radius"
+		With = 350
+	}
+
+// Add mod parts
+	{
+		Action = AddMany
+		AddTo = "<ships/terran/terran.rules>/Terran/Parts"
+		CreateIfNotExisting = false
+		IgnoreIfNotExisting = false
+		ManyToAdd
+		[
+			// Heavy Armor
+			&<heavy_armor_wedge/heavy_armor_wedge.rules>/Part
+			&<heavy_armor/heavy_armor.rules>/Part
+ 			&<heavy_armor_1x2_wedge/heavy_armor_1x2_wedge.rules>/Part
+			&<heavy_armor_1x3_wedge/heavy_armor_1x3_wedge.rules>/Part
+			&<heavy_armor_2x1/heavy_armor_2x1.rules>/Part
+			&<heavy_armor_structure_hybrid_1x1/heavy_armor_structure_hybrid_1x1.rules>/Part
+			&<heavy_armor_structure_hybrid_1x2/heavy_armor_structure_hybrid_1x2.rules>/Part
+			&<heavy_armor_structure_hybrid_1x3/heavy_armor_structure_hybrid_1x3.rules>/Part
+			&<heavy_armor_structure_hybrid_tri/heavy_armor_structure_hybrid_tri.rules>/Part
+			&<heavy_armor_tri/heavy_armor_tri.rules>/Part
+
+			// Light Armor
+			&<armor_light/armor_light.rules>/Part
+			&<armor_light_2x1/armor_light_2x1.rules>/Part
+			&<armor_light_wedge/armor_light_wedge.rules>/Part
+			&<armor_light_tri/armor_light_tri.rules>/Part
+			&<armor_light_1x2_wedge/armor_light_1x2_wedge.rules>/Part
+			&<armor_light_1x3_wedge/armor_light_1x3_wedge.rules>/Part
+
+			// Macro Cannon
+			&<macro_cannon/macro_cannon.rules>/Part
+
+			// Torpedo Laucher
+			&<torpedo_launcher/torpedo_launcher.rules>/Part
+
+			// Anti Missile
+			&<anti_missile/anti_missile.rules>/Part
+
+			// Jani's drones
+			&<Parts/Weapons/Drone_launcher_tiny/minidronelauncher.txt>/Part
+			&<Parts/Weapons/Drone_launcher_small/drone_launcher_small.rules>/Part
+		]
+	}
+
+// Maps
+	{ // Add modded maps
+		Action = AddMany
+		AddTo = "<modes/pvp/pvp_domination/pvp_domination.rules>/Mode/MapStyles"
+		CreateIfNotExisting = false
+		IgnoreIfNotExisting = false
+		ManyToAdd
+		[
+			{
+				NameKey = "BroadsidersMapStyles/Small2TOnePoint"
+				DescriptionKey = "BroadsidersMapStyles/Small2TTipOnePoint"
+				Teams = 2
+				CapturePointTypeCounts = [0, 0, 1]
+				StartingCapturePointTypeCountsPerTeam = [0, 0, 1]
+				DoodadTypeCounts
+				[
+					[cosmoteer.megaroid_l, 8]
+					[cosmoteer.megaroid_xl, 4]
+				]
+			}
+			{
+				NameKey = "BroadsidersMapStyles/Small3TOnePoint"
+				DescriptionKey = "BroadsidersMapStyles/Small3TTipOnePoint"
+				Teams = 3
+				CapturePointTypeCounts = [0, 0, 1]
+				StartingCapturePointTypeCountsPerTeam = [0, 0, 1]
+				DoodadTypeCounts
+				[
+					[cosmoteer.megaroid_l, 12]
+					[cosmoteer.megaroid_xl, 4]
+				]
+			}
+			{
+				NameKey = "BroadsidersMapStyles/Small4TOnePoint"
+				DescriptionKey = "BroadsidersMapStyles/Small4TTipOnePoint"
+				Teams = 4
+				CapturePointTypeCounts = [0, 0, 1]
+				StartingCapturePointTypeCountsPerTeam = [0, 0, 1]
+				DoodadTypeCounts
+				[
+					[cosmoteer.megaroid_l, 16]
+					[cosmoteer.megaroid_xl, 4]
+				]
+			}
+		]
+	}
+
+// Andrews messy ship combat mod
+	{
+		Action = Replace
+		Replace = "<common_effects/particles/debris_def.rules>/Initializers/7/FromValue"
+		With = 15
+	}
+	{
+		Action = Replace
+		Replace = "<common_effects/particles/debris_def.rules>/Initializers/7/ToValue"
+		With = 20
+	}
+	{
+		Action = Replace
+		Replace = "<common_effects/particles/debris_def.rules>/Renderer/BaseSize/X"
+		With = 1.5
+	}
+	{
+		Action = Replace
+		Replace = "<common_effects/particles/debris_def.rules>/Renderer/BaseSize/Y"
+		With = 1.5
+	}
+	{
+		Action = Replace
+		Replace = "<common_effects/particles/debris_def.rules>/Initializers/2/ToValue"
+		With = 9
+	}
+	{
+		Action = Replace
+		Replace = "<common_effects/particles/shrapnel_def.rules>/Initializers/3/ToValue"
+		With = 40
+	}
+	{
+		Action = Replace
+		Replace = "<common_effects/particles/shrapnel_def.rules>/Initializers/3/FromValue"
+		With = 20
+	}
+
+// Remove Domination Ship Decay
+
+	{
+		Action = Replace
+		Replace = "<modes/pvp/pvp_domination/pvp_domination.rules>/Mode/JunkDamageFractionPerTick"
+		With = 0
+	}
+
+	{
+		Action = Replace
+		Replace = "<modes/pvp/pvp_domination/pvp_domination.rules>/Mode/JunkDamageChancePerTick"
+		With = 0
+	}
+
+// Add Broadsiders main menu logo.
+
+    {
+        Action = Replace
+        Replace = "<Gui/menus.rules>/LogoShip"
+        With = "logo/FONT broadsiders 3.ship.png"
+    }
+
+// Structures unblocked
+
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/structure/structure.rules>/Part"
+		Overrides
+		{
+			ProhibitedBy = []
+		}
+	}
+
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/structure_1x2_wedge/structure_1x2_wedge.rules>/Part"
+		Overrides
+		{
+			ProhibitedBy = []
+		}
+	}
+
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/structure_1x3_wedge/structure_1x3_wedge.rules>/Part"
+		Overrides
+		{
+			ProhibitedBy = []
+		}
+	}
+
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/structure_tri/structure_tri.rules>/Part"
+		Overrides
+		{
+			ProhibitedBy = []
+		}
+	}
+
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/structure_wedge/structure_wedge.rules>/Part"
+		Overrides
+		{
+			ProhibitedBy = []
+		}
+	}
+	
+	// Drone Construction, Jani's Drones
+	{
+		Action = AddMany
+		AddTo = "<ships/terran/terran.rules>/Terran/RenderLayers"
+		OnlyIfNotExisting = true
+		ManyToAdd
+		[
+			// Drone Construction
+			{
+				Key = "drone_construction"// Ship bucket layer.
+				Value // The actual material.
+				{
+					UniqueBucket = 13
+					RenderStage = High
+					HasNormals = true
+					AtlasTextureParams
+					{
+						MipLevels = 7 // Assumes 64x64 min part sprite size.
+						//Compression = FullAlpha
+					}
+					Material
+					{
+						Shader = "common/construction_drone.shader"
+						_hotColor = [0, 255, 187, 255]
+						_coldColor = [0, 94, 255, 255]
+						_noiseTexture
+						{
+							File = "./Data/common_effects/particles/noise_gradient.png"
+							SampleMode = Linear
+							MipLevels = 7
+							UVMode = Wrap
+						}
+					}
+					DiffuseMaterial
+					{
+						Shader = "common/construction_drone_diffuse.shader"
+						_hotColor = [0, 255, 187, 255]
+						_coldColor = [0, 94, 255, 255]
+						_noiseTexture
+						{
+							File = "./Data/common_effects/particles/noise_gradient.png"
+							SampleMode = Linear
+							MipLevels = 7
+							UVMode = Wrap
+						}
+					}
+					NormalsMaterial
+					{
+						Shader = "common/construction_drone_normals.shader"
+						_noiseTexture
+						{
+							File = "./Data/common_effects/particles/noise_gradient.png"
+							SampleMode = Linear
+							MipLevels = 7
+							UVMode = Wrap
+						}
+					}
+				}
+			}
+		]
+	}
+]

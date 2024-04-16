@@ -1,0 +1,162 @@
+ID = "twrecks.torpedo"
+OtherIDs = ["torpedo"]
+Range = 3000
+IdealRange = 3000
+Speed = 15
+
+Components
+{
+	Physics
+	{
+		Type = BoxPhysics
+		Size = [2.7, .9]
+		Density = 0.1
+	}
+
+	DeathByDistanceTraveled
+	{
+		Type = DeathByDistanceTraveled
+		// Distance auto-computed from range.
+	}
+
+	Acceleration
+	{
+		Type = Acceleration
+		Acceleration = 5
+	}
+
+	Sprite
+	{
+		Type = Sprite
+		IsLit = true
+		Sprite
+		{
+			Texture
+			{
+				File = "torpedo.png"
+				MipLevels = max
+			}
+			Size = [2.7, .9]
+		}
+
+		NormalsTexture
+		{
+			File = "torpedo_normals.png"
+			MipLevels = max
+		}
+	}
+
+	MediaEffects
+	{
+		Type = MediaEffects
+		Offset = [-1.2, 0]
+		Rotation = 180d
+		MediaEffects
+		[
+			&<particles/missile_he_thruster_fire.rules>
+			&<particles/missile_he_thruster_smoke.rules>
+			&<particles/missile_he_thruster_plume.rules>
+			&<particles/missile_he_thruster_plume_light.rules>
+		]
+	}
+
+	Targetable
+	{
+		Type = Targetable
+		Health = 45000
+		TargetCategory = "torpedo"
+
+		// OnDeath explode like a mofo
+		OnDeath = &../Hit/HitOperational
+	}
+
+	Hit
+	{
+		Type = SimpleHit
+		SourcePartCollisionDelay = 1.5/30
+
+		HitShield = &HitOperational
+		HitOperational
+		{
+			HitEffects
+			[
+				{
+					Type = ExplosiveDamage
+					TotalDamage = 607500
+					Radius = 18
+					Delay = .05
+					ExpandDuration = .35
+					ExpandStartRadius = 4
+					ExpandLoss = 100%
+					FireChancePerNDamage = 50%
+					ImpulsePerNDamage = 10
+					NDamage = 1000
+					Filter
+					{
+						OperationalHealth = true
+						StructuralHealth = false
+						Friendlies = true
+					}
+				}
+				{
+					Type = ExplosiveDamage
+					TotalDamage = 135000
+					Radius = 12
+					Delay = .05
+					ExpandDuration = .2
+					ExpandStartRadius = 4
+					ExpandLoss = 100%
+					ImpulsePerNDamage = 5
+					NDamage = 1000
+					Filter
+					{
+						OperationalHealth = false
+						StructuralHealth = true
+						Friendlies = true
+					}
+				}
+			]
+
+			MediaEffects
+			[
+				&<./Data/ships/terran/reactor_large/particles/reactor_explode_large.rules>
+				&<./Data/ships/terran/reactor_large/particles/reactor_explode_flash_large.rules>
+				&<./Data/ships/terran/reactor_large/particles/reactor_shockwave_large.rules>
+				&<./Data/common_effects/particles/explosions/huge_part_explode_debris.rules>
+				&<./Data/common_effects/particles/explosions/huge_part_explode_smoke.rules>
+
+				: /BASE_SOUNDS/AudioExterior
+				{
+					Sound = "torpedo_hit.wav"
+					Volume = 2
+					Speed = 1
+					SpeedVariation = .25 * (&Speed)
+				}
+
+				: /BASE_SHAKE
+				{
+					ShakeAmount = 1
+					Duration = 4
+				}
+			]
+		}
+		HitStructural = &HitOperational
+
+		HitFriendly
+		{
+			MediaEffects
+			[
+				&<particles/missile_he_hit.rules>
+				&<particles/missile_he_flash.rules>
+				&<particles/missile_he_smoke.rules>
+
+				: /BASE_SOUNDS/AudioExterior
+				{
+					Sound = "missile_he_hit.wav"
+					Volume = .75
+					SpeedVariation = .4
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,160 @@
+Actions
+[
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part"
+		IgnoreIfNotExisting = true
+		Overrides
+		{
+			Resources
+			[
+				[steel, 60]
+				[coil2, 12]
+				[diamond, 1]
+			]
+		}
+	}
+	{
+		Action = Remove
+		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/TurretCollider"
+		IgnoreIfNotExisting = true
+	}
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/Turret"
+		IgnoreIfNotExisting = true
+		Overrides
+		{
+			FiringArc = 200d
+			ReturnToCenter = false
+			
+			AutoTargets
+			[
+				{
+					TargetType = Bullets
+					BulletTargetCategories = [missile_nuke_stage2, missile_nuke_stage1, torpedo, anti, missile, mine_deployed, mine]
+				}
+			]
+		}
+	}
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/3173066243/shots/pd_beam/pdb_beam.rules>"
+		IgnoreIfNotExisting = true
+		Overrides
+		{
+			Range = 500
+			IdealRange = 250
+		}
+	}
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/3173066243/shots/pd_beam/pdb_beam.rules>/HitNothing"
+		IgnoreIfNotExisting = true
+		Overrides
+		{
+			HitEffects
+			[
+				{
+					Type = ExplosiveDamage
+					TotalDamage = 300
+					Radius = 2
+					Slices = 1
+					Filter
+					{
+						Ships = false
+						Shields = false
+						Bullets = true
+						OnlyBulletCategories = [missile_nuke_stage2, missile_nuke_stage1, torpedo, anti, missile, mine_deployed, mine]
+					}
+				}
+			]
+		}
+	}
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/3173066243/shots/pd_beam/pdb_beam.rules>/HitOperational"
+		IgnoreIfNotExisting = true
+		Overrides
+		{
+			HitEffects
+			[
+				{
+					Type = Damage
+					Damage = 15
+					Filter
+					{
+						Friendlies = false
+						TargetedFriendlies = false
+					}
+				}
+			]
+		}
+	}
+
+	{ // Remove direct control
+		Action = Add
+		AddTo = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/Turret"
+		name = AllowDirectControl
+		ToAdd = false
+	}
+
+	// The weapon has no option but to be default on defense only.
+	{
+		Action = Remove
+		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/FirePrefToggle"
+		IgnoreIfNotExisting = true
+	}
+	{
+		Action = Remove
+		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/FirePrefAttack"
+		IgnoreIfNotExisting = true
+	}
+	{
+		Action = Remove
+		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/FirePrefDefend"
+		IgnoreIfNotExisting = true
+	}
+	{
+		Action = Remove
+		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/AttackToggle"
+		IgnoreIfNotExisting = true
+	}
+	{
+		Action = Remove
+		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/DefendToggle"
+		IgnoreIfNotExisting = true
+	}
+
+	// Remove fire at target toggle (I lifted these directly from vanilla PD so I have no idea why this works :D)
+	{
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/FireModeToggle"
+		With = {
+			Type = UIToggle
+			ToggleID = "fire_mode"
+			Default = 1
+			AvailableChoices = [-1, 1, 2]
+			ToggledOnChoices = [0, 1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/AutoTargetToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnModes = [1, 2]
+		}
+	}
+	{
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/AutoFireToggle"
+		With = {
+			Type = ModeToggle
+			Mode = FireModeToggle
+			OnMode = 2
+		}
+	
+	}
+]

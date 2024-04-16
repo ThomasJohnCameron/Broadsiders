@@ -1,0 +1,121 @@
+PartToggles
+[
+	//TINY DRONE TYPE
+	{
+		ToggleID = "tinydronetype"
+		Style = Popout
+		ShowInEditor = true
+		MultipleModesDisplayOrder = Last
+		Choices
+		[
+			// Combat mk1
+			{
+				ChoiceID = "DroneCombat1"
+				ButtonToolTipKey = "PartToggles/DroneCombat1"
+				ButtonSprite
+				{
+					Texture
+					{
+						File = "tdrone_type1.png"
+						MipLevels = 2
+						SampleMode = Linear
+					}
+				}
+			}
+			// DroneCombat2
+			{
+				ChoiceID = "DroneCombat2"
+				ButtonToolTipKey = "PartToggles/DroneCombat2"
+				ButtonSprite
+				{
+					Texture
+					{
+						File = "tdrone_type2.png"
+						MipLevels = 2
+						SampleMode = Linear
+					}
+				}
+			}
+			// Stell From Mindustry v7
+			{
+				ChoiceID = "StellDrone"
+				ButtonToolTipKey = "PartToggles/StellDrone"
+				ButtonSprite
+				{
+					Texture
+					{
+						File = "tdrone_type3.png"
+						MipLevels = 2
+						SampleMode = Linear
+					}
+				}
+			}
+			// Sparker
+			{
+				ChoiceID = "Sparker"
+				ButtonToolTipKey = "PartToggles/Sparker"
+				ButtonSprite
+				{
+					Texture
+					{
+						File = "tdrone_type5.png"
+						MipLevels = 2
+						SampleMode = Linear
+					}
+				}
+			}
+		]
+	}
+	//Small DRONE TYPE
+	{
+		ToggleID = "smalldronetype"
+		Style = Popout
+		ShowInEditor = true
+		MultipleModesDisplayOrder = Last
+		Choices
+		[
+			// Laser
+			{
+				ChoiceID = "DroneSmallLaser"
+				ButtonToolTipKey = "PartToggles/DroneSmallLaser"
+				ButtonSprite
+				{
+					Texture
+					{
+						File = "sdrone_type1.png"
+						MipLevels = 2
+						SampleMode = Linear
+					}
+				}
+			}
+			// Cannon
+			{
+				ChoiceID = "DroneMedCannon"
+				ButtonToolTipKey = "PartToggles/DroneMedCannon"
+				ButtonSprite
+				{
+					Texture
+					{
+						File = "sdrone_type2.png"
+						MipLevels = 2
+						SampleMode = Linear
+					}
+				}
+			}
+			// EletroCannon
+			{
+				ChoiceID = "DroneEletroCannon"
+				ButtonToolTipKey = "PartToggles/DroneEletroCannon"
+				ButtonSprite
+				{
+					Texture
+					{
+						File = "sdrone_type3.png"
+						MipLevels = 2
+						SampleMode = Linear
+					}
+				}
+			}
+		]
+	}
+]

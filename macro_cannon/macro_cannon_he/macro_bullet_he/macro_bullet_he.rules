@@ -1,0 +1,161 @@
+ID = "twrecks.macro_bullet_he"
+Range = 470
+IdealRange = [100, 420]
+IdealRadius = [5, 150]
+Speed = 160
+
+Components
+{
+	Physics
+	{
+		Type = CirclePhysics
+		Radius = 1
+		Density = 0.0001
+	}
+
+	Death
+	{
+		Type = DeathByLifetime
+		// Lifetime will be auto-calculated based on range and speed.
+	}
+
+	Targetable
+	{
+		Type = Targetable
+		Health = 8000
+		TargetCategory = "bullet"
+
+		OnDeath = &../Hit/HitOperational
+	}
+
+	Hit
+	{
+		Type = SimpleHit
+		SourcePartCollisionDelay = 1.5/30
+
+		HitShield = &HitOperational
+		HitOperational
+		{
+			HitEffects
+			[
+				{
+					Type = ExplosiveDamage
+					TotalDamage = 70000
+					Radius = 20
+					Filter
+					{
+						Friendlies = true
+					}
+				}
+				{
+					Type = Fire
+					FireChance = 0.80
+				}
+				{
+					Type = Impulse;
+					Impulse = 4000;
+				}
+			]
+
+			MediaEffects
+			[
+                &<./Data/shots/missile_he/particles/missile_he_hit.rules>
+                &<./Data/shots/missile_he/particles/missile_he_flash.rules>
+                &<./Data/shots/missile_he/particles/missile_he_smoke.rules>
+
+				: /BASE_SOUNDS/AudioExterior
+				{
+					Sound = "missile_he_hit.wav"
+					Volume = 5
+					SpeedVariation = .4
+				}
+
+				: /BASE_SHAKE
+				{
+					ShakeAmount = .15
+					Duration = .75
+				}
+			]
+		}
+		HitStructural = &HitOperational
+
+		HitFriendly
+		{
+			MediaEffects
+			[
+                &<./Data/shots/missile_he/particles/missile_he_hit.rules>
+                &<./Data/shots/missile_he/particles/missile_he_flash.rules>
+                &<./Data/shots/missile_he/particles/missile_he_smoke.rules>
+
+				: /BASE_SOUNDS/AudioExterior
+				{
+					Sound = "missile_he_hit.wav"
+					Volume = 5
+					SpeedVariation = .4
+				}
+			]
+		}
+	}
+
+	Sprite
+	{
+		Type = AnimatedSprite
+		RenderBucket = BulletUpper3
+		ReduceScaleWith = Hit
+		ReduceScaleExponent = 0.5
+		Animation
+		{
+			AtlasSprite
+			{
+				Texture
+				{
+					File = "bullet.png"
+					SampleMode = Linear
+					MipLevels = max
+				}
+				Size = [2, 2]
+			}
+			FrameCount = 1
+			FrameSize = [80, 80]
+			FramesPerRow = 1
+			FramesPerSecond = 120
+		}
+		NormalsTexture = &Animation/AtlasSprite/Texture
+		DiffuseShader = "./Data/default.shader"
+		NormalsShader = "./Data/no_normals.shader"
+	}
+
+	GlowSprite
+	{
+		Type = Sprite
+		RenderBucket = BulletUpper4
+		Z = 0.5
+		IsLight = true
+		Offset = [0, 0]
+		Sprite
+		{
+			Texture
+			{
+				File = "./Data/common_effects/particles/blob.png"
+				MipLevels = max
+				SampleMode = Linear
+			}
+			Size = [18, 9]
+			VertexColor = [255, 100, 0]
+			TargetBlendMode = Add
+			Shader = "./Data/common_effects/fancy_light.shader"
+			_litReflectiveStrength = 24
+			_litAdditiveStrength = 0.05
+			_unlitAdditiveStrength = 0.125
+		}
+	}
+
+	MediaEffects
+	{
+		Type = MediaEffects
+		MediaEffects
+		[
+			&<particles/bullet_trail_deck.rules>
+		]
+	}
+}

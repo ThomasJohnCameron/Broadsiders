@@ -1,0 +1,159 @@
+Range = 500
+IdealRange = 250
+Width = .5
+HitInterval = .05
+HitEffectsScaleOverRange = [1, 1 - (&../Range) / 1000]
+MediaEffectsScaleOverRange = &HitEffectsScaleOverRange
+CrewCollisions = {Enemies=true; Junk=true}
+ClipRangeToTarget = true
+
+BeamMediaEffects
+[
+	// The beam itself.
+	{
+		Type = Beam
+		BeamSprite
+		{
+			Texture
+			{
+				File = ./Data/common_effects/particles/noise_gradient.png
+				SampleMode = Linear
+				MipLevels = max
+				UVMode = Wrap
+			}
+			_noiseTexture
+			{
+				File = ./Data/common_effects/particles/noise_marble.png
+				SampleMode = Linear
+				MipLevels = max
+				UVMode = Wrap
+			}
+			Shader = "./Data/shots/ion_beam/ion_beam.shader"
+			_extraBeginLength = 0
+			_extraEndLength = 0.1
+			_sizePulseFactor = 1.2
+			_sizePulseInterval = .1
+			_sizePulseUOffsetFactor = -.03
+			_endCapSize = 4
+			Size = [100%, 0.25]
+			VertexColor = [255, 255, 255, 217]
+			TargetBlendMode
+			{
+				SourceRgbFactor = InverseDestColor
+				DestRgbFactor = One
+				RgbOperator = Add
+				SourceAlphaFactor = One
+				DestAlphaFactor = One
+				AlphaOperator = Add
+			}
+		}
+		FadeInTime = .15
+		FadeOutTime = .25
+		Bucket = Upper1
+		RandomTimeOffset = [0, 1]
+	}
+
+	// Beam lighting.
+	{
+		Type = Beam
+		BeamSprite
+		{
+			Texture
+			{
+				File = "./Data/common_effects/particles/blob.png"
+				MipLevels = max
+				SampleMode = Linear
+			}
+			Shader = "./Data/common_effects/fancy_beam_light.shader"
+			Size = [100%, 3]
+			_extraBeginLength = (&Size/1) / 2
+			_extraEndLength = (&Size/1)
+			VertexColor = [255, 0, 0, 255]
+			_z = 0.4
+			_litReflectiveStrength = 8
+			_litAdditiveStrength = 0
+			_unlitAdditiveStrength = 0.2
+			_nrmlStrengthLimit = 1.0
+			TargetBlendMode
+			{
+				SourceRgbFactor = InverseDestColor
+				DestRgbFactor = One
+				RgbOperator = Add
+				SourceAlphaFactor = Zero
+				DestAlphaFactor = One
+				AlphaOperator = Add
+			}
+		}
+		Bucket = Upper4
+		IsLight = true
+		FadeInTime = .15
+		FadeOutTime = .25
+	}
+
+	: /BASE_SOUNDS/AudioExterior
+	{
+		Sound = "./Data/shots/ion_beam/ion_beam.wav"
+		Volume = 0.5
+		MaxConcurrent = 2
+		MaxConcurrentVolume = 0.5
+		RampUpTime = .1
+		RampDownTime = .2
+
+		DynamicVolume : ^/0/DynamicVolume
+		{
+			UseCustomShapeForDistance = true
+		}
+		DynamicFilter : ^/0/DynamicFilter
+		{
+			UseCustomShapeForDistance = true
+		}
+	}
+]
+
+HitNothing
+{
+	HitEffects
+	[
+		{
+			Type = ExplosiveDamage
+			TotalDamage = 300
+			Radius = 2
+			Slices = 1
+			Filter
+			{
+				Ships = false
+				Shields = false
+				Bullets = true
+				OnlyBulletCategories = [missile_nuke_stage2, missile_nuke_stage1, torpedo, anti, missile, mine_deployed, mine]
+			}
+		}
+	]
+
+	MediaEffects
+	[
+    &<particles/pdb_beam_hit.rules>
+	]
+}
+HitBullet = &HitNothing
+
+HitOperational
+{
+	HitEffects
+	[
+		{
+			Type = Damage
+			Damage = 15
+			Filter
+			{
+				Friendlies = false
+				TargetedFriendlies = false
+			}
+		}
+	]
+
+	MediaEffects = &../HitNothing/MediaEffects
+}
+
+HitCrew = &HitOperational
+HitShield = &HitOperational
+HitStructural = &HitOperational

@@ -1,0 +1,453 @@
+Part : <./Data/ships/terran/base_part_terran.rules>/Part
+{
+	NameKey = "Parts/MacroCannon"
+	IconNameKey = "Parts/MacroCannonIcon"
+	ID = twrecks.macro_cannon // Part IDs must always be in the form of "author_name.part_name". If making your own mod, do *not* use "cosmoteer" as your author name, because it may conflict with future vanilla parts.
+	OtherIDs = [macro_cannon]
+	EditorGroup = "WeaponsProjectile"
+	DescriptionKey = "Parts/MacroCannonDesc"
+	Resources
+	[
+		[steel, 120]
+		[coil, 30]
+		[coil2, 40]
+		[tristeel, 60]
+	]
+	IsFlippable = true
+	TypeCategories = [weapon, uses_ammo, is_crewed]
+	Size = [4, 6]
+	SelectionPriority = 1
+	SelectionTypeByRotation = true
+	SelectionTypeID = "cannons"
+	MaxHealth = 61500
+	Density = 3
+	InitialPenetrationResistance = 20
+	ProhibitAbove = 2
+	ReceivableBuffs : ^/0/ReceivableBuffs []
+	AllowedDoorLocations
+	[
+        [-1, 1]
+        [-1, 2]
+        [-1, 3]
+        [-1, 4]
+		[3, 6]
+		[4, 5]
+		[4, 4]
+		[4, 3]
+		[4, 2]
+		[4, 1]
+	]
+	ForceManhattanPathInPart = true
+	EditorIcon
+	{
+		Texture
+		{
+			File = "icon.png"
+			SampleMode = Linear
+		}
+		Size = [50, 90]
+	}
+	Components : ^/0/Components
+	{
+		IsOperational
+		{
+			Type = MultiToggle
+			Toggles = [PowerToggle, PartCrew]
+			Mode = All
+		}
+
+		PowerToggle
+		{
+			Type = UIToggle
+			ToggleID = "on_off"
+			Default = 1
+			RequiresCommand = false
+		}
+
+		CommandConsumer
+		{
+			Type = CommandConsumer
+			OperationalToggle = PowerToggle
+			CommandPoints = 12
+		}
+
+		LoadedAmmo
+		{
+			Type = ResourceStorage
+			ResourceType = bullet
+			MaxResources = 10
+			DelayBeforeReadyToUse = .25
+			AnticipateMoreResourcesFrom = ["AmmoStorage"]
+			ToggleOnResources = 10
+			ToggleOffResources = 0
+			UITileRect = [1 + 7/64, .4 + 7/64, 1 - 14/64, 1 - 14/64]
+			ReceiveResourceMediaEffects = &/COMMON_EFFECTS/AmmoLoad
+			DropResourcesWhenDestroyed = true
+		}
+		AmmoStorage
+		{
+			Type = TypedResourceGrid
+			ResourceType = bullet
+			GridRect = [3, 4, 1, 2]
+			Layer = "doodads_low"
+		}
+		AmmoConsumer
+		{
+			Type = TypedResourceGridConsumer
+			ResourceType = bullet
+			Storage = AmmoStorage
+			DefaultPriority = &/PRIORITIES/Weapon_Supply
+			AdditionalStorageForJobPriority = [LoadedAmmo]
+			OperationalToggle = PowerToggle
+			ConsumptionToggleButtonOffset = [0, -.4]
+		}
+		AmmoPrereq
+		{
+			Type = MultiResourceStorage
+			ResourceType = bullet
+			ResourceStorages = [LoadedAmmo, AmmoStorage]
+			ToggleOnResources = 4
+			ToggleOffResources = 3
+		}
+		AmmoLoader
+		{
+			Type = ResourceConverter
+			FromStorage = AmmoStorage
+			ToStorage = LoadedAmmo
+			FromQuantity = 1
+			ToQuantity = 1
+			Interval = .15
+		}
+
+		BulletType
+		{
+			Type = UIToggle
+			ToggleID = "bullet_type"
+			Default = 1
+			AlwaysAllowInBuildMode = false
+		}
+		APToggle
+		{
+			Type = ModeToggle
+			Mode = BulletType
+			OnMode = 0
+		}
+		APComponents
+		{
+			Type = ToggledComponents
+			Toggle = APToggle
+			IncludeInBlueprints = false
+			Components = &<macro_cannon_ap/macro_cannon_ap.rules>/Components
+		}
+		HEToggle
+		{
+			Type = ModeToggle
+			Mode = BulletType
+			OnMode = 1
+		}
+		HEComponents
+		{
+			Type = ToggledComponents
+			Toggle = HEToggle
+			IncludeInBlueprints = false
+			Components = &<macro_cannon_he/macro_cannon_he.rules>/Components
+		}
+
+		RPFToggle
+		{
+			Type = ModeToggle
+			Mode = BulletType
+			OnMode = 2
+		}
+		RPFComponents
+		{
+			Type = ToggledComponents
+			Toggle = RPFToggle
+			IncludeInBlueprints = false
+			Components = &<macro_cannon_rpf/macro_cannon_rpf.rules>/Components
+		}
+
+		External_Walls_Graphics
+		{
+			Type = Graphics
+			Location = [2, 2]
+			Walls
+			{
+				Layer = "external_walls"
+				DamageLevels
+				[
+					{
+						File = "external_walls.png"
+						NormalsFile = "external_walls_normals.png"
+						Size = [4, 8]
+					}
+					{
+						File = "external_walls_33.png"
+						NormalsFile = "external_walls_normals_33.png"
+						Size = [4, 8]
+					}
+					{
+						File = "external_walls_66.png"
+						NormalsFile = "external_walls_normals_66.png"
+						Size = [4, 8]
+					}
+				]
+			}
+		}
+
+		Graphics
+		{
+			Type = Graphics
+			Location = [2, 2]
+			OperationalToggle = IsOperational
+			Floor
+			{
+				Layer = "floors"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "floor.png"
+						Size = [4, 8]
+					}
+					{
+						File = "floor_33.png"
+						Size = [4, 8]
+					}
+					{
+						File = "floor_66.png"
+						Size = [4, 8]
+					}
+				]
+			}
+			OperationalLighting
+			{
+				Layer = "lights_add"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "lights.png"
+						Size = [4, 8]
+					}
+				]
+			}
+			Walls
+			{
+				Layer = "walls"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "walls.png"
+						Size = [4, 8]
+					}
+					{
+						File = "walls.png"
+						Size = [4, 8]
+					}
+					{
+						File = "walls.png"
+						Size = [4, 8]
+					}
+				]
+			}
+			OperationalDoodad
+			{
+				Layer = "doodads_low"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "doodads_on.png"
+						Size = [4, 8]
+					}
+				]
+			}
+			NonOperationalDoodad
+			{
+				Layer = "doodads_low"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "doodads_off.png"
+						Size = [4, 8]
+					}
+				]
+			}
+			Roof
+			{
+				Layer = "roofs"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "roof.png"
+						NormalsFile = "roof_normals.png"
+						Size = [4, 8]
+					}
+					{
+						File = "roof.png"
+						NormalsFile = "roof_normals.png"
+						Size = [4, 8]
+					}
+					{
+						File = "roof.png"
+						NormalsFile = "roof_normals.png"
+						Size = [4, 8]
+					}
+				]
+			}
+		}
+
+		MantletCollider
+		{
+			Type = PolygonCollider
+			Vertices
+			[
+				[2/3, 0]
+				[10/3, 0]
+				[3/3, -1.35]
+				[9/3, -1.35]
+			]
+			Density = 2
+		}
+
+		Indicators
+		{
+			Type = IndicatorSprites
+			Location = [2, 3]
+			Layer = "indicators"
+			Indicators
+			[
+				// Turned off.
+				{
+					Toggle = PowerToggle
+					AtlasSprite
+					{
+						File = &/INDICATORS/PowerOff
+						Size = [1, 1]
+					}
+				}
+
+				// Out of ammo.
+				{
+					Toggle = AmmoPrereq
+					Delay = 5
+					AtlasSprite
+					{
+						File = &/INDICATORS/NoAmmo
+						Size = [1, 1]
+					}
+				}
+
+				// No crew.
+				{
+					Toggle = PartCrew
+					AtlasSprite
+					{
+						File = &/INDICATORS/NoCrew
+						Size = [1, 1]
+					}
+				}
+			]
+		}
+
+		CrewLocation2
+		{
+			Type = CrewLocation
+			Location = [0.65, 1.85]
+			Rotation = 45d
+		}
+		CrewLocation1
+		{
+			Type = CrewLocation
+			Location = [0.45, 5.55]
+			Rotation = 225d
+		}
+		CrewLocation3
+		{
+			Type = CrewLocation
+			Location = [0.65, 2.9]
+			Rotation = 135d
+		}
+		CrewLocation4
+		{
+			Type = CrewLocation
+			Location = [3.35, 1.85]
+			Rotation = 315d
+		}
+		CrewLocation5
+		{
+			Type = CrewLocation
+			Location = [3.33, 2.36]
+			Rotation = 270d
+		}
+		CrewLocation6
+		{
+			Type = CrewLocation
+			Location = [3.35, 2.9]
+			Rotation = 225d
+		}
+		PartCrew
+		{
+			Type = PartCrew
+			Crew = 6
+			DefaultPriority = &/PRIORITIES/Weapon_Crew
+			PrerequisitesBeforeCrewing = [PowerToggle]
+			HighPriorityPrerequisites = [AmmoPrereq]
+			CrewDestinations
+			[
+				[0.65, 1.85]
+				[0.45, 5.55]
+				[0.65, 2.9]
+				[3.5, 2.5]
+				[3.35, 1.85]
+				[3.33, 2.36]
+				[3.35, 2.9]
+			]
+			CrewLocations
+			[
+				CrewLocation1
+				CrewLocation2
+				CrewLocation3
+				CrewLocation4
+				CrewLocation5
+				CrewLocation6
+			]
+		}
+
+		LoadEffects
+		{
+			Type = TriggeredEffects
+			Trigger = AmmoLoader
+			MediaEffects = &/COMMON_EFFECTS/AmmoLoad
+		}
+
+		OperationEffects
+		{
+			Type = ToggleEffects
+			Location = [1.5, 1.5]
+			Toggle = IsOperational
+			ToggledOnMediaEffects = &/COMMON_EFFECTS/MachinesOn
+			ToggledOffMediaEffects = &/COMMON_EFFECTS/MachinesOff
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/COMMON_EFFECTS/BigPartDestroyed
+			Location = [1.5, 1.5]
+		}
+
+
+		Blueprints
+		{
+			Type = BlueprintSprite
+			File = "blueprints.png"
+			Size = [4, 8]
+			Offset = [0, -1]
+		}
+	}
+}

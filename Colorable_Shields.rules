@@ -1,0 +1,36 @@
+Actions
+[
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/shield_gen_small/shield_gen_small.rules>/Part"
+		IgnoreIfNotExisting = false
+		Overrides
+		{
+			ID = definetly.not.cosmoteer.shield_gen_small //makes it not have the same id
+			OtherIDs = [definetly.not.shield_generator]//makes it not have the same id
+			IsBuildable = false //makes it illegal and invis
+		}
+	}
+	{
+		Action = Overrides
+		OverrideIn = "<ships/terran/shield_gen_large/shield_gen_large.rules>/Part"
+		IgnoreIfNotExisting = false
+		Overrides
+		{
+			ID = definetly.not.cosmoteer.shield_gen_large //makes it not have the same id
+			IsBuildable = false //makes it illegal and invis
+		}
+	}
+	{
+		Action = Add
+		AddTo = "<../../../workshop/content/799600/2899284847/ships/terran/shield_gen_small_colorable/shield_gen_small_colorable.rules>/Part/OtherIDs"
+		IgnoreIfNotExisting = true
+		ToAdd = cosmoteer.shield_gen_small
+	}
+	{
+		Action = Add
+		AddTo = "<../../../workshop/content/799600/2899284847/ships/terran/shield_gen_large_colorable/shield_gen_large_colorable.rules>/Part/OtherIDs"
+		IgnoreIfNotExisting = true
+		ToAdd = cosmoteer.shield_gen_large
+	}
+]

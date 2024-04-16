@@ -1,0 +1,112 @@
+Actions
+[
+	// Dual PD turret
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2887754416/point_defense_dual_turret/point_defense_dual_turret.rules>/Part"
+		IgnoreIfNotExisting = true
+		Overrides
+		{
+			CrewSpeedFactor = .5 // Decrease crew movement speed
+			Resources // Increase cost
+			[
+				[steel, 48]
+				[coil, 48]
+			]
+		}
+	}
+	
+	{// Match Vanilla PD targetting
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2887754416/point_defense_dual_turret/point_defense_dual_turret.rules>/Part/Components/Turret/AutoTargets/0"
+		With = {
+			TargetType = Bullets
+			BulletTargetCategories = [missile_nuke_stage1, missile_nuke_stage2, torpedo, anti, missile, mine, mine_deployed, bullet]
+			Toggle = DefendToggle
+		}
+	}
+
+	{// Match Vanilla PD power usage
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2887754416/point_defense_dual_turret/point_defense_dual_turret.rules>/Part/Components/BaseEmitter/ResourcesUsed"
+		With = (&<./Data/ships/terran/point_defense/point_defense.rules>/Part/Components/BulletEmitter/ResourcesUsed)
+	}
+
+	{// Match Vanilla PD firerate
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2887754416/point_defense_dual_turret/point_defense_dual_turret.rules>/Part/Components/Turret/FireInterval"
+		With = (&<./Data/ships/terran/point_defense/point_defense.rules>/Part/Components/Turret/FireInterval)
+	}
+
+	{// Slightly less accurate than vanilla PD
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2887754416/point_defense_dual_turret/point_defense_dual_turret.rules>/Part/Components/BaseEmitter/Spread"
+		With = [-0.6d, 0.6d]
+	}
+
+
+
+
+	// PD Turret
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2887754416/point_defense_turret/point_defense_turret.rules>/Part"
+		IgnoreIfNotExisting = true
+		Overrides
+		{
+			CrewSpeedFactor = .5 // Decrease crew movement speed
+			Resources // Increase cost
+			[
+				[steel, 24]
+				[coil, 24]
+			]
+		}
+	}
+
+	{// Match Vanilla PD targetting
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2887754416/point_defense_turret/point_defense_turret.rules>/Part/Components/Turret/AutoTargets/0"
+		With = {
+			TargetType = Bullets
+			BulletTargetCategories = [missile_nuke_stage1, missile_nuke_stage2, torpedo, anti, missile, mine, mine_deployed, bullet]
+			Toggle = DefendToggle
+		}
+	}
+
+	{// Match Vanilla PD power usage
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2887754416/point_defense_turret/point_defense_turret.rules>/Part/Components/BulletEmitter/ResourcesUsed"
+		With = (&<./Data/ships/terran/point_defense/point_defense.rules>/Part/Components/BulletEmitter/ResourcesUsed)
+	}
+
+	{// Match Vanilla PD firerate
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2887754416/point_defense_turret/point_defense_turret.rules>/Part/Components/Turret/FireInterval"
+		With = (&<./Data/ships/terran/point_defense/point_defense.rules>/Part/Components/Turret/FireInterval)
+	}
+
+	{// Slightly less accurate than vanilla PD
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2887754416/point_defense_turret/point_defense_turret.rules>/Part/Components/BulletEmitter/Spread"
+		With = [-0.6d, 0.6d]
+	}
+
+
+
+	// Turret PD + Dual Turret PD Shot
+	{
+		Action = Overrides
+		OverrideIn = "<../../../workshop/content/799600/2887754416/shots/pd_turret_shot/pd_turret_shot.rules>"
+		IgnoreIfNotExisting = true
+		Overrides
+		{
+			Range = (&<./Data/shots/pd_shot/pd_shot.rules>/Range) // Match vanilla PD shot range
+		}
+	}
+
+	{// Match vanilla PD targetting
+		Action = Replace
+		Replace = "<../../../workshop/content/799600/2887754416/shots/pd_turret_shot/pd_turret_shot.rules>/Components/Hit/BulletCollisions/OnlyBulletCategories"
+		With = [missile_nuke_stage1, missile_nuke_stage2, torpedo, anti, missile, mine, mine_deployed, bullet]
+	}
+] 
