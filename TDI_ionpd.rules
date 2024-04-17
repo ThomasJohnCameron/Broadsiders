@@ -100,31 +100,31 @@ Actions
 	}
 
 	// The weapon has no option but to be default on defense only.
-	{
-		Action = Remove
-		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/FirePrefToggle"
-		IgnoreIfNotExisting = true
-	}
-	{
-		Action = Remove
-		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/FirePrefAttack"
-		IgnoreIfNotExisting = true
-	}
-	{
-		Action = Remove
-		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/FirePrefDefend"
-		IgnoreIfNotExisting = true
-	}
-	{
-		Action = Remove
-		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/AttackToggle"
-		IgnoreIfNotExisting = true
-	}
-	{
-		Action = Remove
-		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/DefendToggle"
-		IgnoreIfNotExisting = true
-	}
+//	{
+//		Action = Remove
+//		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/FirePrefToggle"
+//		IgnoreIfNotExisting = true
+//	}
+//	{
+//		Action = Remove
+//		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/FirePrefAttack"
+//		IgnoreIfNotExisting = true
+//	}
+//	{
+//		Action = Remove
+//		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/FirePrefDefend"
+//		IgnoreIfNotExisting = true
+//	}
+//	{
+//		Action = Remove
+//		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/AttackToggle"
+//		IgnoreIfNotExisting = true
+//	}
+//	{
+//		Action = Remove
+//		Remove = "<../../../workshop/content/799600/3173066243/parts/pdb/pdb.rules>/Part/Components/DefendToggle"
+//		IgnoreIfNotExisting = true
+//	}
 
 	// Remove fire at target toggle (I lifted these directly from vanilla PD so I have no idea why this works :D)
 	{
@@ -155,6 +155,5 @@ Actions
 			Mode = FireModeToggle
 			OnMode = 2
 		}
-	
 	}
 ]
