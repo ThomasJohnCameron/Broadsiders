@@ -262,6 +262,14 @@ Part : <./Data/ships/terran/base_part_terran.rules>/Part
 						File = "doodads_on.png"
 						Size = [4, 8]
 					}
+					{
+						File = "doodads_on_33.png"
+						Size = [4, 8]
+					}
+					{
+						File = "doodads_on_66.png"
+						Size = [4, 8]
+					}
 				]
 			}
 			NonOperationalDoodad
@@ -272,6 +280,14 @@ Part : <./Data/ships/terran/base_part_terran.rules>/Part
 				[
 					{
 						File = "doodads_off.png"
+						Size = [4, 8]
+					}
+					{
+						File = "doodads_off_33.png"
+						Size = [4, 8]
+					}
+					{
+						File = "doodads_off_66.png"
 						Size = [4, 8]
 					}
 				]

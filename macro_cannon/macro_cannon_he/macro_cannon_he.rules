@@ -125,6 +125,19 @@ Components
 				Duration = .5
 			}
 		]
+
+		HitEffects
+		[
+			{
+				Type = AreaCrewStun
+				Duration = 0.5
+				Falloff = 1
+				Radius = 10
+				Filter { Friendlies=true; IgnoreInvulnerability=true; }
+				Cumulative = true
+				HitShipOnly = true
+			}
+		]
 	}
 
 	BarrelGraphics
