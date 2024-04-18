@@ -230,6 +230,14 @@ Part : <./Data/ships/terran/base_part_terran.rules>/Part
 						File = "lights.png"
 						Size = [4, 8]
 					}
+					{
+						File = "lights_33.png"
+						Size = [4, 8]
+					}
+					{
+						File = "lights_66.png"
+						Size = [4, 8]
+					}
 				]
 			}
 			Walls
@@ -243,11 +251,11 @@ Part : <./Data/ships/terran/base_part_terran.rules>/Part
 						Size = [4, 8]
 					}
 					{
-						File = "walls.png"
+						File = "walls_33.png"
 						Size = [4, 8]
 					}
 					{
-						File = "walls.png"
+						File = "walls_66.png"
 						Size = [4, 8]
 					}
 				]
