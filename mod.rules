@@ -1,7 +1,7 @@
 ID = zzzzzzzzzztwrecks.broadsiders
 Name = "Broadsiders"
 
-Version = 2.6.6
+Version = 2.6.8
 CompatibleGameVersions = ["0.24.2_steam"]
 //ModifiesMultiplayer = true
 StringsFolder = "strings"
