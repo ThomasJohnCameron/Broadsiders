@@ -1,0 +1,9 @@
+//Adds the factions ships into the game
+Ships :
+
+	<Faction1/builtins_faction1.rules>/Ships
+	//Faction 2, To "turn on" the second faction just remove the "//" on the left here and in 
+//	<Faction2/builtins_faction2.rules>/Ships
+[
+	
+]

@@ -1,0 +1,15 @@
+Faction = faction2
+Tags = [civilian]
+
+Ships
+[
+	// Trade ships
+	:~{ File="Cargo Ship 01a.ship.png";	Tier=3;  Tags : ~/Tags [trade] }
+	:~{ File="Cargo Ship 02a.ship.png";	Tier=3;  Tags : ~/Tags [trade] }
+	:~{ File="Cargo Ship 03a.ship.png";  Tier=5;  Tags : ~/Tags [trade] }
+	:~{ File="Cargo Ship 04a.ship.png";  Tier=5;  Tags : ~/Tags [trade] }
+	:~{ File="Cargo Ship 05a.ship.png";  Tier=7;  Tags : ~/Tags [trade] }
+	:~{ File="Cargo Ship 06a.ship.png";  Tier=7;  Tags : ~/Tags [trade] }
+	:~{ File="Cargo Ship 07a.ship.png";  Tier=10; Tags : ~/Tags [trade] }
+	:~{ File="Cargo Ship 08a.ship.png";  Tier=10; Tags : ~/Tags [trade] }
+]	

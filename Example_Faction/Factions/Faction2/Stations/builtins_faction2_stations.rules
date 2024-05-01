@@ -1,0 +1,16 @@
+Faction = faction2
+Tags = [station]
+
+Ships
+[
+	// Civilian stations
+	:~{ File="Trade Station 01a.ship.png";   Tier=4;  Tags : ~/Tags [trade_station];    StasisIcon="Trade Station 01.png" }
+	:~{ File="Trade Station 02a.ship.png";   Tier=10; Tags : ~/Tags [trade_station];    StasisIcon="Trade Station 02.png" }
+	:~{ File="Trade Station 03a.ship.png";   Tier=16; Tags : ~/Tags [trade_station];    StasisIcon="Trade Station 03.png" }
+
+	// Military stations
+	:~{ File="Arms Depot 01a.ship.png";    Tier=6;  SpawnTier=3;  Tags : ~/Tags [military_station]; StasisIcon="Arms Depot 01.png" }
+	:~{ File="Arms Depot 02a.ship.png";    Tier=9;  SpawnTier=8;  Tags : ~/Tags [military_station]; StasisIcon="Arms Depot 02.png" }
+	:~{ File="Arms Depot 03a.ship.png";    Tier=12; SpawnTier=12; Tags : ~/Tags [military_station]; StasisIcon="Arms Depot 03.png" }
+	:~{ File="Arms Depot 04a.ship.png";    Tier=16; SpawnTier=16; Tags : ~/Tags [military_station]; StasisIcon="Arms Depot 04.png" }
+]

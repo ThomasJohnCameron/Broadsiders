@@ -1,0 +1,9 @@
+//Adds your factions lore to the "Tutorials and Codex"
+CodexPages
+[
+	//Faction 1
+	&<faction1/lore_faction1.rules>
+	//Faction 2, To "turn on" the second faction just remove the "//" on the left here and in 
+//	&<faction2/lore_faction2.rules>
+	//To add more just copy above below
+]

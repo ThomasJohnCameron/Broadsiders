@@ -1,0 +1,44 @@
+//Adds the custom faction(s) to the game, make sure to use a unique ID to avaoid the risk of dublicate factions causing crashes and incompatability errors 
+Factions
+[
+	//Example_Faction_1
+	{
+		ID = faction1
+		NameKey = "Factions/faction1"
+		Icon
+		{
+			Texture
+			{
+				File = "faction1.png"
+				SampleMode = Linear
+				MipLevels = max
+			}
+		}
+		// RGB values
+		BorderColor = [143, 48, 220]
+		//Make sure the Military and Civilian Player Index is unique, Monolith is 100 and 101, Cabal is 200 and 201, Imperium is 300 and 301, and Fringe is 400 adn 401
+		MilitaryPlayerIndex = 500
+		CivilianPlayerIndex = 501
+	}
+	
+	//Faction 2, To "turn on" the second faction just remove the "//" on the left here
+	//Example_Faction_2
+//	{
+//		ID = faction2
+//		NameKey = "Factions/faction2"
+//		Icon
+//		{
+//			Texture
+//			{
+//				File = "faction2.png"
+//				SampleMode = Linear
+//				MipLevels = max
+//			}
+//		}
+//		// RGB values
+//		BorderColor = [117, 255, 114]
+//		//Make sure the Military and Civilian Player Index is unique, Monolith is 100 and 101, Cabal is 200 and 201, Imperium is 300 and 301, and Fringe is 400 adn 401
+//		MilitaryPlayerIndex = 600
+//		CivilianPlayerIndex = 601
+//	}
+]

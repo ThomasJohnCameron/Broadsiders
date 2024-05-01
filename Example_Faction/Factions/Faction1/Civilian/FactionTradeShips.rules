@@ -1,0 +1,17 @@
+//Adds Factions trade ships and their routs to the game
+MyBaseTradeShip : <./Data/modes/career/career.rules>/BaseTradeShip
+{
+		
+}
+TradeShips
+{
+	// faction1
+	faction1_3a  : ~/MyBaseTradeShip { ShipID="Cargo Ship 01";  Faction=faction1; TierRange=[1, 9];   StasisSpeed=85; StasisTradeTime=40; }
+	faction1_3b  : ~/MyBaseTradeShip { ShipID="Cargo Ship 02";  Faction=faction1; TierRange=[1, 9];   StasisSpeed=68; StasisTradeTime=40; }
+	faction1_5a  : ~/MyBaseTradeShip { ShipID="Cargo Ship 03";  Faction=faction1; TierRange=[3, 12];  StasisSpeed=85; StasisTradeTime=60; }
+	faction1_5b  : ~/MyBaseTradeShip { ShipID="Cargo Ship 04";  Faction=faction1; TierRange=[3, 12];  StasisSpeed=75; StasisTradeTime=60; }
+	faction1_7a  : ~/MyBaseTradeShip { ShipID="Cargo Ship 05";  Faction=faction1; TierRange=[6, 18];  StasisSpeed=77; StasisTradeTime=80; }
+	faction1_7b  : ~/MyBaseTradeShip { ShipID="Cargo Ship 06";  Faction=faction1; TierRange=[6, 18];  StasisSpeed=57; StasisTradeTime=80; }
+	faction1_10a : ~/MyBaseTradeShip { ShipID="Cargo Ship 07";  Faction=faction1; TierRange=[12, 18]; StasisSpeed=83; StasisTradeTime=100; }
+	faction1_10b : ~/MyBaseTradeShip { ShipID="Cargo Ship 08";  Faction=faction1; TierRange=[12, 18]; StasisSpeed=75; StasisTradeTime=100; }
+}

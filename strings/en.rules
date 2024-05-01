@@ -368,3 +368,45 @@ Stats //Jani's drones
 {
 	DroneLauncherNotes = "<bad>Warning:</bad> <gray><b>For Requirements, Statistics, and Misc info, hover above each Toggle when selecting a type of drone to show the description of each drone.</b></gray>"
 }
+
+Factions
+{
+	faction1 = "Custom Faction 1"
+	//Faction 2, To "turn on" the second faction just remove the "//" on the left here and in 
+//	faction2 = "Custom Faction 2"
+}
+//Write your faction lore here, each "lore#" will be a new paragraph
+Lore
+{
+	faction1
+	{
+		Title = "Custom Faction 1"
+		Lore1 = "Lore post 1"
+		Lore2 = "Lore post 2"
+		Lore3 = "Lore post 3"
+		Lore4 = "Lore post 4"
+		Lore5 = "lore post 5"
+		Lore6 = "lore post 6"
+	}
+	//Faction 2, To "turn on" the second faction just remove the "//" on the left here and in 
+//	faction2
+//	{
+//		Title = "Custom Faction 2"
+//		Lore1 = "Lore post 1"
+//		Lore2 = "Lore post 2"
+//		Lore3 = "Lore post 3"
+//		Lore4 = "Lore post 4"
+//		Lore5 = "lore post 5"
+//		Lore6 = "lore post 6"
+//	}
+}
+MapSizes
+{
+	Small = "Small"
+	SmallTip = "25 solar systems."
+	Large = "Large"
+	LargeTip = "100 solar systems."
+}
+
+ExpandedFactions = "Expanded Factions Ships"
+ExpandedFactionsTip = "Ships from NPC Faction Added"

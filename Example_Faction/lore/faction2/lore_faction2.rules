@@ -1,0 +1,33 @@
+ID = faction2
+TitleKey = "Lore/faction2/Title"
+TabNameKey = "Codex/Lore"
+Entries
+[
+	{
+		TextKey = "Lore/faction2/Lore2"
+		Image
+		{
+			Texture
+			{
+				File = "faction2.png"
+				SampleMode = Linear
+				MipLevels = max
+			}
+		}
+	}
+	{
+		TextKey = "Lore/faction2/Lore2"
+	}
+	{
+		TextKey = "Lore/faction2/Lore3"
+	}
+	{
+		TextKey = "Lore/faction2/Lore4"
+	}
+	{
+		TextKey = "Lore/faction2/Lore5"
+	}
+	{
+		TextKey = "Lore/faction2/Lore6"
+	}
+]

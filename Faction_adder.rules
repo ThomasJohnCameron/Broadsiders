@@ -1,0 +1,115 @@
+Actions
+[
+	// Custom faction spawner
+	{
+		Action = AddMany
+		AddTo = "<factions/factions.rules>/Factions"
+		ManyToAdd = &<Example_Faction/Example_Faction.rules>/Factions
+	}
+	
+	// Adds your factions into the galaxy
+	{
+		Action = AddMany
+		AddTo = "<galaxy_map/map_generators/base_galaxy.rules>/Factions/Factions"
+		ManyToAdd = &<Example_Faction/FactionsGalaxy.rules>/FactionsGalaxy
+	}
+	
+	// Gives your faction a tire list
+	{
+		Action = Add
+		Name = faction1
+		AddTo = "<galaxy_map/map_generators/base_galaxy.rules>/FactionTiers"
+		ToAdd = &<Example_Faction/FactionTiers.rules>/FactionTiers/Factions
+	}
+	
+	// Adds factions trade ships
+	{
+		Action = AddBase
+		Name = faction1
+		AddBaseTo = "<modes/career/career.rules>/TradeRoutes/TradeShips"
+		BaseToAdd = &<Example_Faction/Factions/Faction1/Civilian/FactionTradeShips.rules>/TradeShips
+	}
+
+	// Adds faction ships
+	{
+		Action = AddMany
+		AddTo = "<builtin_ships/builtins.rules>/Ships"
+		ManyToAdd = &<Example_Faction/Factions/Faction_Ships.rules>/Ships
+	}
+	
+	// Adds faction FTL beacons
+	{
+		Action = AddMany
+		AddTo = "<doodads/doodads.rules>/Doodads"
+		ManyToAdd = &<Example_Faction/doodads/doodads.rules>/Doodads
+	}
+	
+	// Adds faction FTL beacons to the galaxy map
+	{
+		Action = AddMany
+		AddTo = "<modes/career/sysgen_ftl_beacons.rules>/SubSpawners/0/DoodadTypes"
+		ManyToAdd = &<Example_Faction/doodads/ftl_beacon_sysgen.rules>/SubSpawners
+	}
+	
+	// Adds factions lore to the codex
+	{
+		Action = AddMany
+		AddTo = "<codex/lore/lore.rules>/CodexPages"
+		ManyToAdd = &<Example_Faction/lore/lore.rules>/CodexPages
+	}
+	
+	// Galaxy map sizes for Creative
+	{
+		Action = AddMany
+		AddTo = "<modes/career/career.rules>/MapSizes"
+		ManyToAdd
+		[
+			&<Galaxy_Sizes/Sizes.rules>/Small
+			&<Galaxy_Sizes/Sizes.rules>/Large
+		]
+	}
+	
+	// Adds factions decals to the game
+	{
+		Action = Add
+		AddTo = "<roof_decals/roof_decals.rules>/Groups/1/Folders"
+		ToAdd = "Logos"
+	}
+	
+	//
+	//Faction 2, To "turn on" the second faction just remove the "//" on the left here in
+//	Example_Faction/Example_Faction.rules	
+//	Example_Faction/FactionsGalaxy.rules
+//	Example_Faction/FactionTiers.rules
+//	Example_Faction/Factions/Faction_Ships.rules
+//	Example_Faction/lore/lore.rules
+//	Example_Faction/doodads/doodads.rules
+//	And in strings/en.rules
+	// Adds faction 2 trade ships
+//	{
+//		Action = AddBase
+//		Name = faction2
+//		AddBaseTo = "<modes/career/career.rules>/TradeRoutes/TradeShips"
+//		BaseToAdd = &<Example_Faction/Factions/Faction2/Civilian/FactionTradeShips.rules>/TradeShips
+//	}
+	//End of Faction 2
+	//	
+
+
+
+
+
+	// Broadsider Factions:
+	
+
+]
+	
+	//Adds factions folder to the Ship Library
+ShipLibraries
+[
+	{
+		Folder = "Expanded Factions"
+		NameKey = "ExpandedFactions"
+		TooltipKey = "ExpandedFactionsTip"
+	}
+]

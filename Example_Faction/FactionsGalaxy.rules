@@ -1,0 +1,32 @@
+//This is what determines how much of the galaxy each faction controls, all but Fringe's ratio is 100% see 
+FactionsGalaxy
+[
+	{
+		FactionID = faction1
+		TerritoryRatio = 100%
+		AvoidOtherFactionsStrength = .3
+		AvoidEdgeStrength = .2
+		FactionStrengthExponent = 3
+		MinFactionStrength = 5%
+	}
+
+	//Faction 2, To "turn on" the second faction just remove the "//" on the left here
+//	{
+//		FactionID = faction2
+//		TerritoryRatio = 100%
+//		AvoidOtherFactionsStrength = .3
+//		AvoidEdgeStrength = .2
+//		FactionStrengthExponent = 3
+//		MinFactionStrength = 5%
+//	}
+
+	{
+		FactionID = imc
+		TerritoryRatio = 100%
+		AvoidOtherFactionsStrength = .3
+		AvoidEdgeStrength = .2
+		FactionStrengthExponent = 3
+		MinFactionStrength = 5%
+	}
+
+]

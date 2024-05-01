@@ -1,0 +1,9 @@
+//Adds Faction 1's ships/stations into the game, will need to make a .rules for the other factions
+Ships : 
+	<Combat/builtins_faction1_combat.rules>/Ships
+	<Defense/builtins_faction1_defense.rules>/Ships
+	<Civilian/builtins_faction1_civilian.rules>/Ships
+	<Stations/builtins_faction1_stations.rules>/Ships
+[
+
+]

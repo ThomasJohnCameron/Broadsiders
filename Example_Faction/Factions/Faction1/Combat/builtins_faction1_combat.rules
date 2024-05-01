@@ -1,0 +1,65 @@
+Faction = faction1
+Tags = [combat]
+
+Ships
+[
+	// Scouts
+	:~{ File="Scout 01.ship.png";    Tier=1;  Difficulty=1; }
+	:~{ File="Scout 02.ship.png";    Tier=1;  Difficulty=1; }
+	:~{ File="Scout 03.ship.png";    Tier=1;  Difficulty=1; }
+	:~{ File="Scout 04.ship.png";    Tier=2;  Difficulty=1; }
+	:~{ File="Scout 05.ship.png";    Tier=2;  Difficulty=1; }
+	:~{ File="Scout 06.ship.png";    Tier=2;  Difficulty=2; }
+	:~{ File="Scout 07.ship.png";    Tier=3;  Difficulty=1; }
+	:~{ File="Scout 08.ship.png";    Tier=3;  Difficulty=1; }
+	:~{ File="Scout 09.ship.png";    Tier=3;  Difficulty=2; }
+
+	// Patrol ships
+	:~{ File="Patrol Ship 01.ship.png";    Tier=4;  Difficulty=1; }
+	:~{ File="Patrol Ship 02.ship.png";    Tier=4;  Difficulty=2; }
+	:~{ File="Patrol Ship 03.ship.png";    Tier=5;  Difficulty=1; }
+	:~{ File="Patrol Ship 04.ship.png";	   Tier=5;  Difficulty=2; }
+	:~{ File="Patrol Ship 05.ship.png";    Tier=5;  Difficulty=2; }
+	:~{ File="Patrol Ship 06.ship.png";    Tier=6;  Difficulty=1; }
+	:~{ File="Patrol Ship 07.ship.png";    Tier=6;  Difficulty=2; }
+	:~{ File="Patrol Ship 08.ship.png";    Tier=6;  Difficulty=2; }
+
+	// Corvettes
+	:~{ File="Corvette 01.ship.png";     Tier=7;  Difficulty=1; }
+	:~{ File="Corvette 02.ship.png";     Tier=7;  Difficulty=2; }
+	:~{ File="Corvette 03.ship.png";	 Tier=8;  Difficulty=1; }
+	:~{ File="Corvette 04.ship.png";     Tier=8;  Difficulty=1; }
+	:~{ File="Corvette 05.ship.png";     Tier=8;  Difficulty=2; }
+	:~{ File="Corvette 06.ship.png";     Tier=9;  Difficulty=1; }
+	:~{ File="Corvette 07.ship.png";     Tier=9;  Difficulty=2; }
+
+	// Frigates
+	:~{ File="Frigates 01.ship.png";    Tier=10; Difficulty=1; }
+	:~{ File="Frigates 02.ship.png";    Tier=10; Difficulty=2; }
+	:~{ File="Frigates 03.ship.png"; 	Tier=11; Difficulty=2; }
+	:~{ File="Frigates 04.ship.png";	Tier=11; Difficulty=2; }
+	:~{ File="Frigates 05.ship.png";    Tier=11; Difficulty=2; }
+	:~{ File="Frigates 06.ship.png";    Tier=12; Difficulty=2; }
+	:~{ File="Frigates 07.ship.png";    Tier=12; Difficulty=3; }
+
+	// Destroyers
+	:~{ File="Destroyers 01.ship.png";   Tier=13; Difficulty=2; }
+	:~{ File="Destroyers 02.ship.png";   Tier=13; Difficulty=2; }
+	:~{ File="Destroyers 03.ship.png";	 Tier=13; Difficulty=3; }
+	:~{ File="Destroyers 04.ship.png";	 Tier=14; Difficulty=2; }
+	:~{ File="Destroyers 05.ship.png";   Tier=14; Difficulty=2; }
+	:~{ File="Destroyers 06.ship.png";   Tier=14; Difficulty=3; }
+
+	// Cruisers
+	:~{ File="Cruisers 01.ship.png";    Tier=15; Difficulty=2; }
+	:~{ File="Cruisers 02.ship.png";    Tier=15; Difficulty=3; }
+
+	// Battleships
+	:~{ File="Battleships 01.ship.png";		Tier=16; Difficulty=2; }
+	:~{ File="Battleships 02.ship.png";		Tier=16; Difficulty=3; }
+	:~{ File="Battleships 03.ship.png";		Tier=16; Difficulty=3; }
+
+	// Battlecruisers
+	:~{ File="Battlecruisers 01.ship.png";    Tier=17; Difficulty=3; }
+	:~{ File="Battlecruisers 02.ship.png";    Tier=17; Difficulty=3; }
+]

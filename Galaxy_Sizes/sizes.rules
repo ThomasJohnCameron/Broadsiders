@@ -1,0 +1,14 @@
+// Adds the size option when generating a new game
+Small
+{
+	NameKey = "MapSizes/Small"
+	TipKey = "MapSizes/SmallTip"
+	MapGenerator = &<Small.rules>
+}
+
+Large
+{
+	NameKey = "MapSizes/Large"
+	TipKey = "MapSizes/LargeTip"
+	MapGenerator = &<large.rules>
+}

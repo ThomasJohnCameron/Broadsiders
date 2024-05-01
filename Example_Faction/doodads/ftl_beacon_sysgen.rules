@@ -1,0 +1,6 @@
+//Added your beacons to the games beacon system generator so they will spawn in as unexplored locations "?"
+SubSpawners
+[
+	{Type=JarHead.ftl_beacon_faction_1; Faction=faction1;}
+//	{Type=JarHead.ftl_beacon_faction_2; Faction=faction2;}
+]

@@ -1,0 +1,1 @@
+For the stations icons load the game in dev more, open a creative game to load in the station you want to make an icon of, open the dev consol by pressing CTRL + ~ select your ship then under "Ship" there will be an option "Generate Icon"

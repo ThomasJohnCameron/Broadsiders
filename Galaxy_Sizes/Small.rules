@@ -1,0 +1,14 @@
+//Sets the galaxy size to have 25 systems
+Spawners
+[
+	: <./Data/galaxy_map/map_generators/base_galaxy.rules>/MapNodes
+	{
+		//Spawns in 25 stars
+		Count = 25
+	}
+
+	&<./Data/galaxy_map/map_generators/base_galaxy.rules>/Factions
+	&<./Data/galaxy_map/map_generators/base_galaxy.rules>/FactionTiers
+	&<./Data/galaxy_map/map_generators/base_galaxy.rules>/StartingNodePicker
+	&<./Data/galaxy_map/map_generators/base_galaxy.rules>/ProgressionTiers
+]

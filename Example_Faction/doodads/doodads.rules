@@ -1,0 +1,8 @@
+//Adds the Factions FTL Beacons
+Doodads
+[
+	//Faction FTL Beacon
+	&<Faction1_FTL/doodad_ftl_beacon_faction_1.rules>
+	//Faction 2, To "turn on" the second faction just remove the "//" on the left here
+//	&<Faction2_FTL/doodad_ftl_beacon_faction_2.rules>
+]

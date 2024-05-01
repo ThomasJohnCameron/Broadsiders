@@ -1,0 +1,14 @@
+//Sets the Career size to have 100 systems
+Spawners
+[
+	: <./Data/galaxy_map/map_generators/base_galaxy.rules>/MapNodes
+	{
+		//Spawns in 100 stars
+		Count = 100
+	}
+
+	&<./Data/galaxy_map/map_generators/base_galaxy.rules>/Factions
+	&<./Data/galaxy_map/map_generators/base_galaxy.rules>/FactionTiers
+	&<./Data/galaxy_map/map_generators/base_galaxy.rules>/StartingNodePicker
+	&<./Data/galaxy_map/map_generators/base_galaxy.rules>/ProgressionTiers
+]

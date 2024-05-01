@@ -1,7 +1,7 @@
 ID = zzzzzzzzzztwrecks.broadsiders
 Name = "Broadsiders"
 
-Version = 2.6.8
+Version = 2.6.9
 CompatibleGameVersions = ["0.24.2_steam"]
 //ModifiesMultiplayer = true
 StringsFolder = "strings"
@@ -19,7 +19,7 @@ Description =
  "janiTNT: Jani's drones are integrated directly into broadsiders.\n"\
  "JFJohnny5: For allowing us to use his light armour assets."
 
-Actions : &<TDI_ionpd.rules>/Actions, <Colorable_shields.rules>/Actions, <Colourable_Lasers.rules>/Actions, <Deck_PD.rules>/Actions
+Actions : &<TDI_ionpd.rules>/Actions, <Colorable_shields.rules>/Actions, <Colourable_Lasers.rules>/Actions, <Faction_adder.rules>/Actions
 [
 	// Large Cannon
 	{

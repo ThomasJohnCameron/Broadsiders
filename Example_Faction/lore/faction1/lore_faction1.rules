@@ -1,0 +1,34 @@
+//Adds Factions 1's "logo" and lore to the lore page in the Codex, you will need to make a new .rules folder to add one for any other faction
+ID = faction1
+TitleKey = "Lore/faction1/Title"
+TabNameKey = "Codex/Lore"
+Entries
+[
+	{
+		TextKey = "Lore/faction1/Lore1"
+		Image
+		{
+			Texture
+			{
+				File = "faction1.png"
+				SampleMode = Linear
+				MipLevels = max
+			}
+		}
+	}
+	{
+		TextKey = "Lore/faction1/Lore2"
+	}
+	{
+		TextKey = "Lore/faction1/Lore3"
+	}
+	{
+		TextKey = "Lore/faction1/Lore4"
+	}
+	{
+		TextKey = "Lore/faction1/Lore5"
+	}
+	{
+		TextKey = "Lore/faction1/Lore6"
+	}
+]

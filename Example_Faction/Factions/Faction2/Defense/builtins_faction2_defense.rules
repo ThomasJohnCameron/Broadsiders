@@ -1,0 +1,11 @@
+Faction = faction2
+IDPrefix = "faction2"
+Tags = [defense]
+
+Ships
+[
+	// Platforms
+	:~{ File="Defense Platform 01a.ship.png";	Tier=2;  Difficulty=2; }
+	:~{ File="Defense Platform 02a.ship.png";    Tier=2;  Difficulty=2; }
+	:~{ File="Defense Platform 03a.ship.png";    Tier=2;  Difficulty=2; }
+]

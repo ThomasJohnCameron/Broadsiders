@@ -1,0 +1,18 @@
+//Factions FTL beacons information
+ID = JarHead.ftl_beacon_faction_2
+Type = Landmark
+DescriptionKey = "Doodads/FTLBeacon"
+CategoryKey = "Doodads/Ftl"
+Icon
+{
+	Texture
+	{
+		File = "Faction_2 FTL Beacon.ship.png"
+		Resize = [128, 128]
+		MipLevels = max
+		SampleMode = Linear
+	}
+}
+Allegiance = -1 // Neutral
+Ship = "Faction_2 FTL Beacon.ship.png"
+IsFtlPoint = true
